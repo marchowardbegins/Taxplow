@@ -9,6 +9,33 @@
   <link rel="stylesheet" type="text/css" href="assets/css-26fe6699-63a6-4e34-a307-1c762660eaf0_mhtml.blink"/>
   <link rel="stylesheet" type="text/css" href="assets/css-060cc430-7d25-4566-bb5c-3d6452a4ac83_mhtml.blink"/>
 
+  <!-- HERO gradient styles -->
+<style>
+  /* Subtle pastel gradient like the “Taxplow is for firms that…” section */
+  .tp-hero-wrap {
+    position: relative;
+    background: linear-gradient(180deg, #f2f7ff 0%, #f7fbff 35%, #ffffff 100%);
+    overflow: hidden;
+  }
+  .tp-hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  /* Optional: a very faint radial glow for depth */
+  .tp-hero-bg::before{
+    content:"";
+    position:absolute; inset:-20% -10% auto -10%;
+    height:60%;
+    background: radial-gradient(closest-side, rgba(5,108,249,0.10), rgba(5,108,249,0) 70%);
+    filter: blur(12px);
+  }
+  /* Ensure media sits above the gradient */
+  #heroPoster, #heroVideo, #heroPlayBtn { position: relative; z-index: 1; }
+</style>
+
+
   <title>Taxplow - Charge for outcomes not hours.</title>
   <meta name="description" content="Command higher fees for your accounting and tax practice using AI."/>
   <meta name="keywords" content="Marc Howard Taxplow"/>
@@ -114,42 +141,44 @@
                 </div>
               </div>
 
-              <!-- HERO: poster + play overlay + video -->
-              <section id="hero" style="position:relative;background:#fff;">
-                <!-- Poster -->
-                <img id="heroPoster" src="assets/marc hero taxplow.png" alt="Taxplow hero"
-                     style="width:100%;height:auto;display:block;">
+<!-- HERO: poster + play overlay + video (with pastel gradient) -->
+<section id="hero" class="tp-hero-wrap">
+  <!-- Gradient background layer -->
+  <div class="tp-hero-bg" aria-hidden="true"></div>
 
-                <!-- Overlay Play Button -->
-                <button id="heroPlayBtn" aria-label="Play hero video"
-                        style="
-                          position:absolute;inset:0;margin:auto;width:120px;height:120px;
-                          border:none;border-radius:60px;background:rgba(255,255,255,0.92);
-                          display:flex;align-items:center;justify-content:center;
-                          cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.25);
-                          transition:transform .2s ease;
-                        "
-                        onmouseover="this.style.transform='scale(1.05)';"
-                        onmouseout="this.style.transform='scale(1)';">
-                  <!-- White Play Icon (SVG) -->
-                  <svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true">
-                    <circle cx="32" cy="32" r="31" fill="none"></circle>
-                    <polygon points="24,18 24,46 48,32" fill="#000" opacity=".9"></polygon>
-                  </svg>
-                </button>
+  <!-- Poster -->
+  <img id="heroPoster" src="assets/marc hero taxplow.png" alt="Taxplow hero"
+       style="width:100%;height:auto;display:block;">
 
-                <!-- Video -->
-                <video id="heroVideo"
-                       playsinline
-                       muted
-                       preload="metadata"
-                       poster="assets/marc hero taxplow.png"
-                       style="width:100%;height:auto;display:none;">
-                  <source src="https://github.com/marchowardbegins/Taxplow/releases/download/v1/1329_1729000884211Taxplow_Hero_Video.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </section>
-              <!-- /HERO visual -->
+  <!-- Overlay Play Button -->
+  <button id="heroPlayBtn" aria-label="Play hero video"
+          style="
+            position:absolute;inset:0;margin:auto;width:120px;height:120px;
+            border:none;border-radius:60px;background:rgba(255,255,255,0.92);
+            display:flex;align-items:center;justify-content:center;
+            cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.25);
+            transition:transform .2s ease;
+          "
+          onmouseover="this.style.transform='scale(1.05)';"
+          onmouseout="this.style.transform='scale(1)';">
+    <svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true">
+      <circle cx="32" cy="32" r="31" fill="none"></circle>
+      <polygon points="24,18 24,46 48,32" fill="#000" opacity=".9"></polygon>
+    </svg>
+  </button>
+
+  <!-- Video -->
+  <video id="heroVideo"
+         playsinline
+         muted
+         preload="metadata"
+         poster="assets/marc hero taxplow.png"
+         style="width:100%;height:auto;display:none;">
+    <source src="https://github.com/marchowardbegins/Taxplow/releases/download/v1/1329_1729000884211Taxplow_Hero_Video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</section>
+
 
             </div>
           </div>
