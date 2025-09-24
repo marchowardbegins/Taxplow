@@ -744,49 +744,7 @@
   });
 })();
 </script>
-<!-- /Vanilla JS accordion behavior -->
 
-
-<script>
-(function() {
-  var acc = document.getElementById('accordion-1');
-  if (!acc) return;
-
-  function closeAll() {
-    acc.querySelectorAll('.panel-collapse').forEach(function(pc) {
-      pc.classList.remove('in','show');
-      pc.style.height = '0px';
-      pc.setAttribute('aria-expanded', 'false');
-    });
-    acc.querySelectorAll('.accordion-indicator-icon-element').forEach(function(a){
-      a.classList.add('collapsed');
-      a.setAttribute('aria-expanded', 'false');
-    });
-  }
-
-  acc.querySelectorAll('.accordion-indicator-icon-element[data-toggle="collapse"]').forEach(function(a) {
-    a.addEventListener('click', function(e) {
-      e.preventDefault();
-      var targetSel = a.getAttribute('href') || a.dataset.target;
-      if (!targetSel) return;
-      var panel = acc.querySelector(targetSel);
-      if (!panel) return;
-
-      var isOpen = panel.classList.contains('in') || panel.classList.contains('show') || panel.style.height === 'auto';
-
-      closeAll();
-
-      if (!isOpen) {
-        panel.classList.add('in','show');
-        panel.style.height = 'auto';
-        panel.setAttribute('aria-expanded', 'true');
-        a.classList.remove('collapsed');
-        a.setAttribute('aria-expanded', 'true');
-      }
-    });
-  });
-})();
-</script>
 
 
 
