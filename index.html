@@ -442,14 +442,41 @@
                 </div>
               </div>
 
-              <div class="video-card"
-                   data-video-src="https://github.com/marchowardbegins/Taxplow/releases/download/v1/tyler_deese_taxplow_testimonial_video_-_FINAL.mp4"
-                   data-poster="assets/testimonial-deese-poster.jpg">
-                <img src="assets/testimonial-deese-poster.jpg" alt="Deese &amp; Co. CPAs Testimonial"/>
-                <div class="play-overlay" role="button" aria-label="Play testimonial: Deese">
-                  <div class="play-icon"></div>
-                </div>
-              </div>
+              <!-- HERO-style testimonial video (Deese) -->
+<section class="tp-video tp-video--card" id="testimonial-deese"
+         style="position:relative;border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.08);margin:0 20px 25px;">
+  <!-- Poster -->
+  <img class="tp-poster" src="assets/deese-snapshot.png" alt="Deese &amp; Co. CPAs Testimonial"
+       style="width:100%;height:auto;display:block;">
+
+  <!-- Overlay Play Button (big white circle + triangle) -->
+  <button class="tp-play" aria-label="Play testimonial: Tyler Deese"
+          style="
+            position:absolute;inset:0;margin:auto;width:96px;height:96px;
+            border:none;border-radius:9999px;background:rgba(255,255,255,0.92);
+            display:flex;align-items:center;justify-content:center;cursor:pointer;
+            box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .2s ease;
+          "
+          onmouseover="this.style.transform='scale(1.05)';"
+          onmouseout="this.style.transform='scale(1)';">
+    <svg viewBox="0 0 64 64" width="48" height="48" aria-hidden="true">
+      <circle cx="32" cy="32" r="31" fill="none"></circle>
+      <polygon points="24,18 24,46 48,32" fill="#000" opacity=".9"></polygon>
+    </svg>
+  </button>
+
+  <!-- Video -->
+  <video class="tp-video-el"
+         playsinline
+         muted
+         preload="metadata"
+         poster="assets/deese-snapshot.png"
+         style="width:100%;height:auto;display:none;">
+    <source src="https://github.com/marchowardbegins/Taxplow/releases/download/v1/tyler_deese_taxplow_testimonial_video_-_FINAL.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</section>
+
 
               <div data-component="icon"><div class="kartra_icon kartra_icon--center kartra_icon--radical-red-2 kartra_icon--margin-bottom-tiny kartra_icon--giant" style="background-color:transparent;margin:0 auto 10px;"><span class="kartra_icon__icon fa fa-quote-left" style="color:#056cf9;"></span></div></div>
               <div data-component="text"><div class="kartra_text kartra_text--text-center kartra_text--semi-sub-normal kartra_text--pt-serif-font kartra_text--ebony-clay kartra_text--font-weight-regular kartra_text--margin-bottom-small"><p>This year with Taxplow, one thing we were able to do was save a client well over <strong>$500,000 in federal income taxes</strong>. It actually calculated a nice fee for us. I think <strong>we would have probably left a lot</strong> on the engagement...</p></div></div>
