@@ -513,21 +513,7 @@
         </div>
       </div>
 
-Got it. Your FAQ isn’t opening because there’s no Bootstrap JS on the page. Easiest fix: keep your current HTML look, but replace the FAQ accordion block with a vanilla-JS accordion.
 
-## Exactly where to paste
-
-1. **Find this opening tag** in your file:
-
-```html
-<div id="accordion-1" class="list-holder panel-group accordion-style-01 js_kartra_component_holder" data-component="bundle">
-```
-
-2. **Replace everything from that line down to its matching `</div>`** (the end of the accordion group) with the block below **including** the `<script>` that immediately follows it.
-
----
-
-```html
 <!-- FAQ ACCORDION (REPLACED) -->
 <div id="accordion-1" class="list-holder panel-group accordion-style-01 js_kartra_component_holder" data-component="bundle">
 
