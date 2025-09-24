@@ -9,27 +9,11 @@
   <link rel="icon" href="/assets/1074_6634b94fded7c_kartrausers.png" />
   <style>
     :root{
-      --brand:#056cf9;
-      --ink:#0f172a;
-      --muted:#64748b;
-      --bg:#ffffff;
-      --card:#ffffff;
+      --brand:#056cf9; --ink:#0f172a; --muted:#64748b; --bg:#ffffff; --card:#ffffff;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;
-      color:var(--ink);
-      background:var(--bg);
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-    }
-
-    .hero{
-      position:relative; isolation:isolate;
-      padding:64px 16px 24px; overflow:hidden;
-    }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+    .hero{position:relative;isolation:isolate;padding:64px 16px 24px;overflow:hidden}
     .hero:after{
       content:""; position:absolute; inset:auto -10vw -25% -10vw; height:70vh; z-index:-1;
       background:
@@ -43,33 +27,15 @@
     .logo{display:block;margin:0 auto 20px;height:44px;width:auto}
     h1{margin:0 0 10px;font-size:clamp(28px,4.4vw,42px);line-height:1.1;font-weight:800;letter-spacing:-.01em}
     .sub{margin:0 auto 22px;max-width:800px;color:var(--muted);font-size:clamp(15px,2.2vw,18px);line-height:1.55}
-    .badge{
-      display:inline-flex;gap:8px;align-items:center;
-      padding:6px 10px;border-radius:999px;
-      font-size:13px;font-weight:600;color:#0b3a86;
-      background:rgba(5,108,249,.08);border:1px solid rgba(5,108,249,.18);
-      margin-bottom:10px;
-    }
-    .card{
-      background:var(--card);
-      border-radius:16px;
-      box-shadow:0 10px 40px rgba(15,23,42,.08);
-      overflow:hidden;border:1px solid rgba(2,6,23,.06);
-    }
-    .card-head{
-      padding:18px 20px;border-bottom:1px solid rgba(2,6,23,.06);
-      display:flex;align-items:center;gap:10px;justify-content:center;background:#fff;
-    }
+    .badge{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;
+      font-size:13px;font-weight:600;color:#0b3a86;background:rgba(5,108,249,.08);border:1px solid rgba(5,108,249,.18);margin-bottom:10px}
+    .card{background:var(--card);border-radius:16px;box-shadow:0 10px 40px rgba(15,23,42,.08);overflow:hidden;border:1px solid rgba(2,6,23,.06)}
+    .card-head{padding:18px 20px;border-bottom:1px solid rgba(2,6,23,.06);display:flex;align-items:center;gap:10px;justify-content:center;background:#fff}
     .dot{width:10px;height:10px;border-radius:999px;background:#056cf9;opacity:.25}
-    .iframe-wrap{width:100%;min-height:70vh;background:#fff}
-    iframe{display:block;width:100%;height:100vh;border:0}
+    .embed{background:#fff}
     .footer{margin:36px 0 60px;font-size:14px;color:var(--muted);text-align:center}
-    .footer a{color:#056cf9;text-decoration:none}
-    .footer a:hover{text-decoration:underline}
-    .crumbs{margin-top:8px}
-    .crumbs a{color:var(--muted);text-decoration:none}
-    .crumbs a:hover{color:#056cf9;text-decoration:underline}
-    @media (max-height:780px){ iframe{height:85vh} }
+    .footer a{color:#056cf9;text-decoration:none} .footer a:hover{text-decoration:underline}
+    .crumbs{margin-top:8px} .crumbs a{color:var(--muted);text-decoration:none} .crumbs a:hover{color:#056cf9;text-decoration:underline}
   </style>
 </head>
 <body>
@@ -86,18 +52,11 @@
   <main class="wrap">
     <section class="card" aria-label="Taxplow Invite Quiz">
       <div class="card-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-      <div class="iframe-wrap">
-        <!-- JOTFORM EMBED (ID: 241578359718471) -->
-        <iframe
-          id="JotFormIFrame-241578359718471"
-          title="Taxplow Invite Quiz"
-          src="https://form.jotform.com/241578359718471"
-          allow="geolocation; microphone; camera; autoplay; encrypted-media; fullscreen"
-          allowtransparency="true"
-          scrolling="no"
-          frameborder="0"
-          style="min-width:100%;height:100vh;border:none;"
-        ></iframe>
+      <div class="embed">
+        <!-- JOTFORM OFFICIAL EMBED (injects its own iframe + auto-resize) -->
+        <script type="text/javascript"
+          src="https://form.jotform.com/jsform/241578359718471">
+        </script>
       </div>
     </section>
 
@@ -106,48 +65,5 @@
       <a href="/privacy/">Privacy</a> • <a href="/terms/">Terms</a>
     </p>
   </main>
-
-  <!-- Auto-resize & scroll helpers for Jotform -->
-  <script>
-    (function () {
-      var iframe = document.getElementById("JotFormIFrame-241578359718471");
-      if (!iframe) return;
-
-      function receiveMessage(e) {
-        if (!e || !e.data || typeof e.data !== "string") return;
-        var parts = e.data.split(":");
-        if (!parts.length) return;
-
-        // Height message: "setHeight:241578359718471:1234"
-        if (parts[0] === "setHeight") {
-          var newH = parts[parts.length - 1];
-          if (!isNaN(newH)) iframe.style.height = newH + "px";
-        }
-
-        // Scroll into view
-        if (parts[0] === "scrollIntoView") {
-          iframe.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-
-        // Set iframe URL (used by Jotform for redirects)
-        if (parts[0] === "setIframeUrl" && parts[parts.length - 1]) {
-          iframe.src = parts[parts.length - 1];
-        }
-      }
-      window.addEventListener("message", receiveMessage, false);
-
-      // Pass query string/hash to Jotform (keeps UTM, etc.)
-      function passQS() {
-        try {
-          var src = new URL(iframe.src);
-          var here = new URL(window.location.href);
-          if (here.search) src.search = here.search;
-          if (here.hash) src.hash = here.hash;
-          iframe.src = src.toString();
-        } catch (e) {}
-      }
-      passQS();
-    })();
-  </script>
 </body>
 </html>
