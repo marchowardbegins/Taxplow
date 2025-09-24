@@ -9,7 +9,19 @@
   <link rel="stylesheet" type="text/css" href="assets/css-26fe6699-63a6-4e34-a307-1c762660eaf0_mhtml.blink"/>
   <link rel="stylesheet" type="text/css" href="assets/css-060cc430-7d25-4566-bb5c-3d6452a4ac83_mhtml.blink"/>
 
+<style id="full-bleed-fix">
+  /* kill Bootstrap’s side padding on the outer wrapper */
+  .page.container-fluid { padding-left: 0 !important; padding-right: 0 !important; }
 
+  /* make sure section backgrounds can actually reach the edges */
+  .content { position: relative; }
+  .content > .background_changer {
+    position: absolute; inset: 0; background-size: cover; background-position: center;
+  }
+  .content > .background_changer_overlay { position:absolute; inset:0; }
+</style>
+
+  
   <title>Taxplow - Charge for outcomes not hours.</title>
   <meta name="description" content="Command higher fees for your accounting and tax practice using AI."/>
   <meta name="keywords" content="Marc Howard Taxplow"/>
