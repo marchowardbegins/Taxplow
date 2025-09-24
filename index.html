@@ -338,47 +338,6 @@
     </div>
   </div>
 
-<script>
-(function() {
-  function wireTP(section){
-    var btn = section.querySelector('.tp-play');
-    var poster = section.querySelector('.tp-poster');
-    var vid = section.querySelector('.tp-video-el');
-    if (!btn || !poster || !vid) return;
-
-    btn.addEventListener('click', async function () {
-      try {
-        vid.style.display = 'block';
-        vid.muted = false;       // try to start with sound on
-        vid.controls = true;     // show controls after click
-        vid.currentTime = 0;
-        await vid.play();
-        btn.style.display = 'none';
-        poster.style.display = 'none';
-      } catch (e) {
-        // Fallback: some browsers still require the first play to be muted
-        try {
-          vid.muted = true;
-          vid.style.display = 'block';
-          await vid.play();
-          btn.style.display = 'none';
-          poster.style.display = 'none';
-          // First tap on the video will unmute
-          vid.addEventListener('click', function handleUnmuteOnce() {
-            vid.muted = false;
-            vid.volume = 1.0;
-            vid.removeEventListener('click', handleUnmuteOnce);
-          }, { once: true });
-        } catch (err) {
-          console.warn('Testimonial playback failed:', err);
-        }
-      }
-    });
-  }
-
-  document.querySelectorAll('.tp-video').forEach(wireTP);
-})();
-</script>
 
     
   <!-- Testimonial 2 -->
@@ -779,7 +738,7 @@
     </div>
   </div>
 </div>
-```
+
 
 
   <!-- FAQ header -->
@@ -1071,172 +1030,53 @@
 </div><!-- /.container -->
 </div><!-- /#_l84scxqra section wrapper etc. -->
 
-<!-- Exit Intent Popup (unchanged) -->
-<div id="popup_exit" class="modal fade popup_modal popup-modal js_trackable_wrapper" role="dialog" data-reocur="first" data-trigger="mouseaway" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <button type="button" class="closer close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-      <div class="modal-body">
-        <div id="_nmwyqxye0" class="content content--popup-large content--padding-semi-large-equal" style="background-color:#fff;">
-          <div class="background_changer" style="background-color:#fff;"></div>
-          <div class="background_changer_overlay"></div>
+<script>
+(function() {
+  function wireTP(section){
+    var btn = section.querySelector('.tp-play');
+    var poster = section.querySelector('.tp-poster');
+    var vid = section.querySelector('.tp-video-el');
+    if (!btn || !poster || !vid) return;
 
-          <div class="container-fluid page-popup-container--large page-popup-container--column-double">
-            <div class="row" data-component="grid">
-              <div class="col-md-12 column--padding-left-right-large column--sm-padding-left-right-small">
-                <div class="js_kartra_component_holder js_kartra_component_holder--adjust-width">
-                  <div data-component="image">
-                    <img class="kartra_image kartra_image--full pull-center background_changer--blur0" alt="" src="assets/231263712976taxplow_logo_new_v5.png" style="margin:0 auto 20px;width:183px;max-width:100%;height:auto;"/>
-                  </div>
+    btn.addEventListener('click', async function () {
+      try {
+        vid.style.display = 'block';
+        vid.muted = false;       // try to start with sound on
+        vid.controls = true;     // show controls after click
+        vid.currentTime = 0;
+        await vid.play();
+        btn.style.display = 'none';
+        poster.style.display = 'none';
+      } catch (e) {
+        // Fallback: first play muted if browser blocks audio
+        try {
+          vid.muted = true;
+          vid.style.display = 'block';
+          await vid.play();
+          btn.style.display = 'none';
+          poster.style.display = 'none';
+          vid.addEventListener('click', function handleUnmuteOnce() {
+            vid.muted = false;
+            vid.volume = 1.0;
+            vid.removeEventListener('click', handleUnmuteOnce);
+          }, { once: true });
+        } catch (err) {
+          console.warn('Testimonial playback failed:', err);
+        }
+      }
+    });
+  }
 
-                  <div data-component="headline">
-                    <div class="kartra_headline kartra_headline--light-black kartra_headline--asap-font kartra_headline--extra-giant kartra_headline--font-weight-black kartra_headline--margin-bottom-extra-tiny kartra_headline--text-center">
-                      <p>Copy Our $100K/mo Firm Playbook</p>
-                    </div>
-                  </div>
+  // Ensure DOM is ready even if this script ever moves up again
+  function init(){ document.querySelectorAll('.tp-video').forEach(wireTP); }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
 
-                  <div data-component="text" id="96vOxpBBaX">
-                    <div class="kartra_text kartra_text--italic kartra_text--text-center kartra_text--mine-shaft-opaque-75 kartra_text--margin-bottom-extra-small kartra_text--sub-normal">
-                      <p>Unlock our exclusive <strong><span style="background-color:#ffff99;">61-page playbook</span></strong> + <strong><span style="background-color:#ffff99;">117 min video</span></strong> and discover how we mastered the Outcome-Driven Pricing™ Method to scale a $100K/month firm—without adding extra hours to our week.</p>
-                    </div>
-                  </div>
 
-                  <div data-component="image" id="M1Qk9JkIav">
-                    <img class="kartra_image kartra_image--max-width-full pull-center background_changer--blur0" alt="" src="assets/646350362989tp_vsl.png" style="margin:0 auto 20px;width:579px;max-width:100%;height:auto;"/>
-                  </div>
-
-                  <!-- Kartra Opt-in Form (unchanged) -->
-                  <div data-component="optin">
-                    <div class="optin_block_form_54 leads_capture kartra_optin_input_btn--shadow-01">
-                      <div class="leads-form kartra_page_optin_form popup-window-form-style-3">
-                        <div class="kartra_optin_wrapper form_class_ntR2AQ8XqhrK">
-                          <form class="filled_optin js_kartra_trackable_object unique_class__ajqc445t0 form_class_ntR2AQ8XqhrK"
-                                action="https://app.kartra.com//process/add_lead/ntR2AQ8XqhrK"
-                                method="POST" target="_top"
-                                data-asset-id="1" data-display-icons="false" data-domain="https://app.kartra.com/"
-                                data-field-bg="" data-field-color="" data-field-style="rounded"
-                                data-input-class="kartra_optin_input_giant" data-kt-owner="AgqD2Xep"
-                                data-kt-type="optin" data-kt-value="ntR2AQ8XqhrK" data-optin-id="ntR2AQ8XqhrK"
-                                data-submit-bg="rgb(5, 108, 248)" data-submit-bold="700"
-                                data-submit-color="rgba(255, 255, 255, 0.9)" data-submit-corners="Rounded"
-                                data-submit-shadow="btn_shadow_small" data-submit-size="kartra_btn_large"
-                                data-submit-text="ACCESS NOW" data-submit-type="Solid"
-                                style="margin-top:0;margin-bottom:0">
-                            <div class="kartra_optin_r">
-                              <div class="kartra_optin_c1">
-                                <div class="kartra_optin_cg">
-                                  <div class="kartra_optin_controls kartra_optin_input_giant kartra_optin_input_rounded kartra_optin_no_icon">
-                                    <div class="kartra_optin_asterisk"></div>
-                                    <input class="required_ntR2AQ8XqhrK js_kartra_santitation kartra_optin_ti" name="first_name" placeholder="First name..." type="text" data-santitation-type="front_name"/>
-                                  </div>
-                                </div>
-                                <div class="kartra_optin_cg">
-                                  <div class="kartra_optin_controls kartra_optin_input_giant kartra_optin_input_rounded kartra_optin_no_icon">
-                                    <div class="kartra_optin_asterisk"></div>
-                                    <input class="required_ntR2AQ8XqhrK js_kartra_santitation kartra_optin_ti" name="email" placeholder="Email..." type="text" data-santitation-type="email"/>
-                                  </div>
-                                </div>
-                                <div class="kartra_optin_cg">
-                                  <div class="kartra_optin_controls kartra_optin_input_giant kartra_optin_no_icon kartra_optin_input_rounded">
-                                    <div class="kartra_optin_asterisk"></div>
-                                    <div class="kartra_captcha js_kartra_captcha"><svg viewBox="-16 65 122 50" version="1.1" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid" height="100%"><rect x="-16" y="65.5" width="100%" height="100%" fill="url(#effect68d2baac3085d76)"></rect><pattern id="effect68d2baac3085d76" width="11" height="11" patternUnits="userSpaceOnUse"><line class="captcha_stroke" x1="0" y1="0" x2="11" y2="11" stroke="rgba(0, 0, 0, 0.5)" stroke-width="3"></line></pattern><path fill="rgba(0, 0, 0, 0.5)" d="M-7.6748046875,103l-4.5166015625,0l0-26.416015625l4.5166015625,0l0,26.416015625z M-12.5576171875,69.5771484375q0-1.0986328125,0.67138671875-1.85546875t1.98974609375-0.7568359375t2.001953125,0.7568359375t0.68359375,1.85546875t-0.68359375,1.8310546875t-2.001953125,0.732421875t-1.98974609375-0.732421875t-0.67138671875-1.8310546875z M12.3203125,80.63671875q-1.025390625-0.1708984375-2.2216796875-0.1708984375q-4.443359375,0-6.0302734375,3.7841796875l0,18.75l-4.5166015625,0l0-26.416015625l4.39453125,0l0.0732421875,3.0517578125q2.2216796875-3.5400390625,6.298828125-3.5400390625q1.318359375,0,2.001953125,0.341796875l0,4.19921875z M39.2978515625,103l-23.291015625,0l0-3.2470703125l12.3046875-13.671875q2.734375-3.1005859375,3.77197265625-5.04150390625t1.03759765625-4.01611328125q0-2.783203125-1.6845703125-4.5654296875t-4.4921875-1.7822265625q-3.369140625,0-5.23681640625,1.91650390625t-1.86767578125,5.33447265625l-4.5166015625,0q0-4.9072265625,3.16162109375-7.9345703125t8.45947265625-3.02734375q4.9560546875,0,7.8369140625,2.60009765625t2.880859375,6.92138671875q0,5.2490234375-6.689453125,12.5l-9.521484375,10.3271484375l17.8466796875,0l0,3.6865234375z M67.935546875,96.7744140625l5.078125-20.1904296875l4.5166015625,0l-7.6904296875,26.416015625l-3.662109375,0l-6.4208984375-20.01953125l-6.25,20.01953125l-3.662109375,0l-7.666015625-26.416015625l4.4921875,0l5.2001953125,19.775390625l6.15234375-19.775390625l3.6376953125,0z M103.2138671875,76.73046875q0,2.6611328125-1.40380859375,4.736328125t-3.79638671875,3.2470703125q2.783203125,1.1962890625,4.40673828125,3.4912109375t1.62353515625,5.2001953125q0,4.6142578125-3.11279296875,7.3486328125t-8.19091796875,2.734375q-5.126953125,0-8.21533203125-2.74658203125t-3.08837890625-7.33642578125q0-2.880859375,1.57470703125-5.2001953125t4.35791015625-3.515625q-2.3681640625-1.171875-3.7353515625-3.2470703125t-1.3671875-4.7119140625q0-4.4921875,2.880859375-7.12890625t7.5927734375-2.63671875q4.6875,0,7.58056640625,2.63671875t2.89306640625,7.12890625z M99.52734375,93.3076171875q0-2.978515625-1.89208984375-4.8583984375t-4.94384765625-1.8798828125t-4.89501953125,1.85546875t-1.84326171875,4.8828125t1.79443359375,4.7607421875t4.99267578125,1.7333984375q3.173828125,0,4.98046875-1.74560546875t1.806640625-4.74853515625z M92.740234375,70.67578125q-2.6611328125,0-4.30908203125,1.64794921875t-1.64794921875,4.47998046875q0,2.7099609375,1.62353515625,4.38232421875t4.33349609375,1.67236328125t4.33349609375-1.67236328125t1.62353515625-4.38232421875t-1.6845703125-4.4189453125t-4.2724609375-1.708984375z"></path></svg></div>
-                                    <input class="kartra_optin_ti required_ntR2AQ8XqhrK" name="captcha" maxlength="5" placeholder="Retype the code..." type="text"/>
-                                  </div>
-                                </div>
-                                <div class="kartra_optin_cg">
-                                  <div class="js_gdpr_wrapper clearfix kartra_optin_gdpr_wrppr" style="display:none;">
-                                    <div class="gdpr_communications js_gdpr_communications kartra_optin_cg kartra_optin_gdpr_terms">
-                                      <div class="kartra-optin-checkbox">
-                                        <label class="kartra_optin_field-label kartra-optin-checkbox">
-                                          <input class="js_gdpr_communications_check" name="gdpr_communications" type="checkbox" value="1"/><small></small>
-                                          <span class="js_gdpr_label_communications">I would like to receive future communications</span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                    <div class="gdpr_terms js_gdpr_terms kartra_optin_cg kartra_optin_gdpr_terms">
-                                      <div class="kartra-optin-checkbox">
-                                        <label class="kartra_optin_field-label kartra-optin-checkbox">
-                                          <input class="js_gdpr_terms_check" name="gdpr_terms" type="checkbox" value="1"/><small></small>
-                                          <span class="js_gdpr_label_terms">I agree to the GDPR &amp; CCPA Terms &amp; Conditions</span>
-                                          <button type="button" class="kartra_gdpr_popover_button js_gdpr_button_popover_trigger js_theme_border"><i class="kartraico-info_letter js_kartra_popover_trigger js_kartra_popover_gdpr_trigger" data-popover="js_kartra_gdpr_popover"></i></button>
-                                        </label>
-                                      </div>
-                                      <div class="js_kartra_gdpr_popover js_kartra_popover kartra_optin_gdpr_terms_offer" style="display:none;">
-                                        <div class="kartra_optin_popover">
-                                          <div class="kartra_optin_popover-content kartra_optin_popover-content-npadding">
-                                            <span class="js_gdpr_terms_text">I confirm that I am at least 16 years of age or older<br/><br/>I have read and accept any EULA, Terms and Conditions, Acceptable Use Policy, and/or Data Processing Addendum which has been provided to me in connection with the software, products and/or services. <br/><br/>I have been fully informed and consent to the collection and use of my personal data for any purpose in connection with the software, products and/or services. <br/><br/>I understand that certain data, including personal data, must be collected or processed in order for you to provide any products or services I have requested or contracted for.  I understand that in some cases it may be required to use cookies or similar tracking to provide those products or services.. <br/><br/>I understand that I have the right to request access annually to any personal data you have obtained or collected regarding me. You have agreed to provide me with a record of my personal data in a readable format. <br/><br/>I also understand that I can revoke my consent and that I have the right to be forgotten. If I revoke my consent you will stop collecting or processing my personal data. I understand that if I revoke my consent, you may be unable to provide contracted products or services to me, and I can not hold you responsible for that. <br/><br/>Likewise, if I properly request to be forgotten, you will delete the data you have for me, or make it inaccessible. I also understand that if there is a dispute regarding my personal data, I can contact someone who is responsible for handling data-related concerns. If we are unable to resolve any issue, you will provide an independent service to arbitrate a resolution. If I have any questions regarding my rights or privacy, I can contact the email address provided.</span>
-                                          </div>
-                                          <button class="js_gdpr_popover_close kartra_optin_popover-close js_utility_popover_close" type="button"><i class="kartraico-clear"></i></button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <button type="submit" class="kartra_optin_submit_btn kartra_optin_btn_block kartra_optin_btn_giant submit_button_ntR2AQ8XqhrK btn-rounded btn_shadow_small" style="background-color: rgb(5,108,248); color: rgba(255,255,255,.9); font-weight:700;">ACCESS NOW</button>
-                                </div>
-                              </div>
-                              <input type="text" name="aaddress_url" placeholder="" aria-hidden="true" style="display:none; position:absolute; left:-9999px;" tabindex="-1" value=""/>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                      <div data-component="text">
-                        <div class="kartra_text kartra_text--text-center kartra_text--mine-shaft-opaque-50 kartra_text--margin-bottom-tiny kartra_text--small" style="position: relative;">
-                          <p>Your email is safe--we will never spam you.</p>
-                        </div>
-                      </div>
-                    </div><!-- /.optin -->
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div><!-- /.container-fluid -->
-        </div>
-        <div class="clearfix"></div>
-        <div class="page-popup-footer-powered-by page-popup-footer-powered-by--text-right">
-          <p>Powered by <strong>KARTRA</strong></p>
-        </div>
-      </div><!-- /.modal-body -->
-    </div>
-  </div>
-</div>
-
-<!-- GDPR cookie banner (unchanged) -->
-<div class="gdpr_flapjack_banner js_gdpr_flapjack_banner lang-var-en-GB" style="display: none;">
-  <button type="button" class="gdpr-uncollapse-button js_show_gdpr_banner">Cookies</button>
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="grid-gdpr-banner">
-          <div>
-            <div class="js_gdrp_cookie_banner_text gdpr-text">
-              <div>
-                <div>
-                  We use essential cookies for site functionality. If you reject optional cookies, only cookies necessary to provide you the services will be used. By clicking "Accept All", you agree to our:
-                  <div class="gdpr-links">
-                    <a href="https://www.taxplow.com/" target="_blank">Cookie policy</a>
-                    <span></span>
-                    <a href="https://kartra.com/privacy-policy/?kuid=32e91147-4cb2-4a47-8695-9ea8ef46295a-1758640811&amp;kref=nmiautAz8Ja4" target="_blank">Kartra cookies</a>
-                  </div>
-                </div>
-                <div class="gdpr_link_wrapper">
-                  <a class="js_gdpr_button" href="https://www.taxplow.com/" target="_blank">Privacy Policy</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="gdpr_button_block">
-            <div>
-              <button class="gdpr_decline_optional js_gdpr_accept" data-accept="required" data-type="kartra_page" data-type-id="222" data-type-owner="AgqD2Xep" type="button">Decline optional</button>
-            </div>
-            <div>
-              <button class="gdpr_accept_all js_gdpr_accept" data-accept="all" data-type="kartra_page" data-type-id="222" data-type-owner="AgqD2Xep" type="button">Accept All</button>
-            </div>
-          </div>
-          <div class="powered-by-text">Powered by KARTRA</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-```
