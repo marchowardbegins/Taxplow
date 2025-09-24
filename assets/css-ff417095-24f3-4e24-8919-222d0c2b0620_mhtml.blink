@@ -1,0 +1,5 @@
+@charset "utf-8";
+
+.jw_video_22-dimensions { width: 1920px; height: 1080px; }
+
+.jw_video_22-dimensions.vjs-fluid:not(.vjs-audio-only-mode) { padding-top: 56.25%; }

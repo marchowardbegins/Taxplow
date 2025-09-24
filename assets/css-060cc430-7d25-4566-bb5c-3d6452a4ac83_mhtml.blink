@@ -1,0 +1,11 @@
+@charset "utf-8";
+
+div[class*="leads_capture"] .kartra_page_optin_form .unique_class__ajqc445t0 .kartra_optin_tnc-form button.btn.dropdown-toggle, div[class*="leads_capture"] .kartra_page_optin_form .unique_class__ajqc445t0 .kartra_optin_cg button.btn.dropdown-toggle { }
+
+.unique_class__ajqc445t0 .kartra_optin_i { }
+
+.unique_class__ajqc445t0 .kartra_optin_clabel { }
+
+.unique_class__ajqc445t0 ::-webkit-input-placeholder { opacity: 0.7; }
+
+div[class*="leads_capture"] .kartra_page_optin_form .kartra_optin_wrapper .unique_class__ajqc445t0 input[type="radio"] + small, div[class*="leads_capture"] .kartra_page_optin_form .kartra_optin_wrapper .unique_class__ajqc445t0 input[type="checkbox"] + small { }
