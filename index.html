@@ -513,254 +513,296 @@
         </div>
       </div>
 
-      <!-- Accordion -->
-      <div data-component="grid" class="row row--equal">
-        <div class="col-md-10 col-md-offset-1">
-          <div class="js_kartra_component_holder">
-            <div id="accordion-1" class="list-holder panel-group accordion-style-01 js_kartra_component_holder" data-component="bundle">
-              <!-- FAQ 1 -->
-              <div id="obhIywkOkL" class="list-item panel" data-component="bundle">
-                <div class="background-item" data-was-processed="true"></div>
-                <div id="heading-gHeAi0X3ed" class="panel-heading accordion-panel-heading">
-                  <div class="accordion-panel-heading-content">
-                    <div class="accordion-title">
-                      <h4 class="panel-title clearfix"><span><span style="font-weight:700;color:#000;">What exactly is Taxplow? Is this software or a coaching program?</span></span></h4>
-                    </div>
-                    <div class="accordion-indicator">
-                      <div class="accordion-indicator-icon">
-                        <a class="accordion-indicator-icon-element collapsed" data-toggle="collapse" data-parent="#accordion-1" href="#collapse-gHeAi0X3ed" role="button" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div id="collapse-gHeAi0X3ed" class="panel-collapse collapse" aria-expanded="false" style="height:0;">
-                  <div class="panel-body"><p style="line-height:1.38;font-size:.8rem;">Taxplow is a cloud-based platform that guides you on the right questions to ask, what you should charge based on our AI-powered Outcome-Driven Pricing™ technology, how much you can potentially save each client vs what they are doing without you, and an engagement system that closes on average 80%. This is not software where you have to figure out yourself or another program where you watch a bunch of help videos or suffer “group coaching”. You get direct support from our founder Marc Howard, which is why it's limited to only 5 firms per month as we scale-up our team.</p></div>
-                </div>
-              </div>
+Got it. Your FAQ isn’t opening because there’s no Bootstrap JS on the page. Easiest fix: keep your current HTML look, but replace the FAQ accordion block with a vanilla-JS accordion.
 
-    
-<!-- FAQ 2 -->
-<div class="list-item panel" data-component="bundle" id="PK6I2MQopH">
-  <div class="background-item" data-was-processed="true"> </div>
-  <div class="panel-heading accordion-panel-heading" id="heading-zYA4S0KvR4">
-    <div class="accordion-panel-heading-content">
-      <div class="accordion-title">
-        <h4 class="panel-title clearfix" style="position: relative;">
-          <span style="font-variant: normal; white-space: pre-wrap; font-family: Lato; font-size: 0.8rem;">
-            <span style="font-weight: 700; color: rgb(0, 0, 0); font-family: Lato; font-size: 0.8rem;">
-              <span style="text-decoration: none; font-style: normal; color: rgb(0, 0, 0); font-family: Lato; font-size: 0.8rem;">
-                Will this work if I already have a pricing system in place? 
-              </span>
+## Exactly where to paste
+
+1. **Find this opening tag** in your file:
+
+```html
+<div id="accordion-1" class="list-holder panel-group accordion-style-01 js_kartra_component_holder" data-component="bundle">
+```
+
+2. **Replace everything from that line down to its matching `</div>`** (the end of the accordion group) with the block below **including** the `<script>` that immediately follows it.
+
+---
+
+```html
+<!-- FAQ ACCORDION (REPLACED) -->
+<div id="accordion-1" class="list-holder panel-group accordion-style-01 js_kartra_component_holder" data-component="bundle">
+
+  <!-- FAQ 1 -->
+  <div class="list-item panel" data-component="bundle" id="obhIywkOkL">
+    <div class="background-item" data-was-processed="true"></div>
+    <div class="panel-heading accordion-panel-heading" id="heading-gHeAi0X3ed">
+      <div class="accordion-panel-heading-content">
+        <div class="accordion-title">
+          <h4 class="panel-title clearfix" style="position: relative;">
+            <span style="font-variant: normal; white-space: pre-wrap; font-family: Lato; font-size: 0.8rem;">
+              <span style="font-weight: 700; color: #000;">What exactly is Taxplow? Is this software or a coaching program?</span>
             </span>
-          </span>
-        </h4>
-      </div>
-      <div class="accordion-indicator">
-        <div class="accordion-indicator-icon">
-          <a class="accordion-indicator-icon-element collapsed" data-frame-id="_l84scxqra" data-parent="#accordion-1" data-toggle="collapse" href="#collapse-zYA4S0KvR4" role="button" aria-expanded="false" target="_parent">
-            <i class="fa fa-angle-down"></i>
-          </a>
+          </h4>
+        </div>
+        <div class="accordion-indicator">
+          <div class="accordion-indicator-icon">
+            <a class="accordion-indicator-icon-element collapsed" data-toggle="collapse" href="#collapse-gHeAi0X3ed" role="button" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div id="collapse-zYA4S0KvR4" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-    <div class="panel-body" style="position: relative;">
-      <p style="line-height: 1.38; font-size: 0.8rem;">
-        <span style="font-variant: normal; white-space: pre-wrap; font-family: Lato; line-height: 1.38; font-size: 0.8rem;">
-          <span style="font-weight: 400; color: rgb(0, 0, 0); font-family: Lato; line-height: 1.38; font-size: 0.8rem;">
-            <span style="text-decoration: none; font-style: normal; color: rgb(0, 0, 0); font-family: Lato; line-height: 1.38; font-size: 0.8rem;">
-              If you’ve gotten this far chances are you are starting to question your own pricing system. Whether that’s cost-plus, menu pricing or some variety of value pricing, Taxplow does the heavy lifting and is the only system to combine our AI-powered Outcome-Driven Pricing™ technology and a sales closing workflow.
-            </span>
-          </span>
-        </span>
-      </p>
+    <div id="collapse-gHeAi0X3ed" class="panel-collapse collapse" aria-expanded="false" style="height:0px;">
+      <div class="panel-body" style="position: relative;">
+        <p style="line-height:1.38; font-size:0.8rem;">
+          Taxplow is a cloud-based platform that guides you on the right questions to ask, what you should charge based on our AI-powered Outcome-Driven Pricing™ technology, how much you can potentially save each client vs what they are doing without you, and an engagement system that closes on average 80%. This is not software where you have to figure out yourself or another program where you watch a bunch of help videos or suffer “group coaching”. You get direct support from our founder Marc Howard, which is why it's limited to only 5 firms per month as we scale-up our team.
+        </p>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- FAQ 3 -->
-<div class="list-item panel" data-component="bundle">
-  <div class="background-item" data-was-processed="true"> </div>
-  <div class="panel-heading accordion-panel-heading" id="heading-3">
-    <div class="accordion-panel-heading-content">
-      <div class="accordion-title">
-        <h4 class="panel-title clearfix" style="position: relative;">
-          <span style="font-variant: normal; white-space: pre-wrap; font-family: Lato; font-size: 0.8rem;">
-            <span style="font-weight: 700; color: rgb(0, 0, 0); font-family: Lato; font-size: 0.8rem;">
-              <span style="text-decoration: none; font-style: normal; color: rgb(0, 0, 0); font-family: Lato; font-size: 0.8rem;">
-                I don’t do taxes! Does this work for bookkeepers/outsourced CFOs too?
-              </span>
+  <!-- FAQ 2 -->
+  <div class="list-item panel" data-component="bundle" id="PK6I2MQopH">
+    <div class="background-item" data-was-processed="true"></div>
+    <div class="panel-heading accordion-panel-heading" id="heading-zYA4S0KvR4">
+      <div class="accordion-panel-heading-content">
+        <div class="accordion-title">
+          <h4 class="panel-title clearfix" style="position: relative;">
+            <span style="font-variant: normal; white-space: pre-wrap; font-family: Lato; font-size: 0.8rem;">
+              <span style="font-weight: 700; color:#000;">Will this work if I already have a pricing system in place?</span>
             </span>
-          </span>
-        </h4>
-      </div>
-      <div class="accordion-indicator">
-        <div class="accordion-indicator-icon">
-          <a class="accordion-indicator-icon-element collapsed" data-frame-id="_l84scxqra" data-parent="#accordion-1" data-toggle="collapse" href="#collapse-3" role="button" aria-expanded="false" target="_parent">
-            <i class="fa fa-angle-down"></i>
-          </a>
+          </h4>
+        </div>
+        <div class="accordion-indicator">
+          <div class="accordion-indicator-icon">
+            <a class="accordion-indicator-icon-element collapsed" data-toggle="collapse" href="#collapse-zYA4S0KvR4" role="button" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div id="collapse-3" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-    <div class="panel-body" style="position: relative;">
-      <p style="line-height: 1.38; font-size: 0.8rem;">
-        <span style="font-variant: normal; white-space: pre-wrap; font-family: Lato; line-height: 1.38; font-size: 0.8rem;">
-          <span style="font-weight: 400; color: rgb(0, 0, 0); font-family: Lato; line-height: 1.38; font-size: 0.8rem;">
-            <span style="text-decoration: none; font-style: normal; color: rgb(0, 0, 0); font-family: Lato; line-height: 1.38; font-size: 0.8rem;">
-              Yes! Taxplow uses AI and machine learning and data from millions of accounting transactions and engagements to cover just about every firm service, so that you are confident that you are not leaving money or opportunities on the table when it comes to closing highly profitable business clients. This includes client discovery questions and dynamic pricing for:
-            </span>
-          </span>
-        </span>
-      </p>
-      <ul>
-        <li style="list-style-type:disc"><span style="font-family: Lato; font-size: 0.8rem;">Bookkeeping</span></li>
-        <li style="list-style-type:disc"><span style="font-family: Lato; font-size: 0.8rem;">Tax Preparation</span></li>
-        <li style="list-style-type:disc"><span style="font-family: Lato; font-size: 0.8rem;">Tax Advisory</span></li>
-        <li style="list-style-type:disc"><span style="font-family: Lato; font-size: 0.8rem;">Outsourced CFO</span></li>
-        <li style="list-style-type:disc"><span style="font-family: Lato; font-size: 0.8rem;">FP&amp;A</span></li>
-        <li style="list-style-type:disc"><span style="font-family: Lato; font-size: 0.8rem;">Client Advisory</span></li>
-        <li style="list-style-type:disc"><span style="font-family: Lato; font-size: 0.8rem;">Payroll</span></li>
-        <li style="list-style-type:disc"><span style="font-family: Lato; font-size: 0.8rem;">Sales Tax</span></li>
-        <li style="list-style-type:disc"><span style="font-family: Lato; font-size: 0.8rem;">Bill Pay</span></li>
-        <li style="list-style-type:disc"><span style="font-family: Lato; font-size: 0.8rem;">IRS Tax Audits</span></li>
-        <li style="list-style-type:disc"><span style="font-family: Lato; font-size: 0.8rem;">Cryptocurrency Taxes</span></li>
-        <li style="list-style-type:disc"><span style="font-family: Lato; font-size: 0.8rem;">Personal Finance/Wealth Management</span></li>
-        <li style="list-style-type:disc"><span style="font-family: Lato; font-size: 0.8rem;">and many more...</span></li>
-      </ul>
+    <div id="collapse-zYA4S0KvR4" class="panel-collapse collapse" aria-expanded="false" style="height:0px;">
+      <div class="panel-body" style="position: relative;">
+        <p style="line-height:1.38; font-size:0.8rem;">
+          If you’ve gotten this far chances are you are starting to question your own pricing system. Whether that’s cost-plus, menu pricing or some variety of value pricing, Taxplow does the heavy lifting and is the only system to combine our AI-powered Outcome-Driven Pricing™ technology and a sales closing workflow.
+        </p>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- FAQ 4 -->
-<div class="list-item panel" data-component="bundle">
-  <div class="background-item" data-was-processed="true"> </div>
-  <div class="panel-heading accordion-panel-heading" id="heading-4">
-    <div class="accordion-panel-heading-content">
-      <div class="accordion-title">
-        <h4 class="panel-title clearfix" style="position: relative;">
-          <span style="font-variant: normal; white-space: pre-wrap; font-size: 0.8rem; font-family: Lato;">
-            <span style="font-weight: 700; color: rgb(0, 0, 0); font-size: 0.8rem; font-family: Lato;">
-              <span style="text-decoration: none; font-style: normal; color: rgb(0, 0, 0); font-size: 0.8rem; font-family: Lato;">
-                But I have a practice management/CRM/proposal system already–will Taxplow replace this?
-              </span>
+  <!-- FAQ 3 -->
+  <div class="list-item panel" data-component="bundle">
+    <div class="background-item" data-was-processed="true"></div>
+    <div class="panel-heading accordion-panel-heading" id="heading-3">
+      <div class="accordion-panel-heading-content">
+        <div class="accordion-title">
+          <h4 class="panel-title clearfix" style="position: relative;">
+            <span style="font-variant: normal; white-space: pre-wrap; font-family: Lato; font-size: 0.8rem;">
+              <span style="font-weight: 700; color:#000;">I don’t do taxes! Does this work for bookkeepers/outsourced CFOs too?</span>
             </span>
-          </span>
-        </h4>
-      </div>
-      <div class="accordion-indicator">
-        <div class="accordion-indicator-icon">
-          <a class="accordion-indicator-icon-element collapsed" data-frame-id="_l84scxqra" data-parent="#accordion-1" data-toggle="collapse" href="#collapse-4" role="button" aria-expanded="false" target="_parent">
-            <i class="fa fa-angle-down"></i>
-          </a>
+          </h4>
+        </div>
+        <div class="accordion-indicator">
+          <div class="accordion-indicator-icon">
+            <a class="accordion-indicator-icon-element collapsed" data-toggle="collapse" href="#collapse-3" role="button" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div id="collapse-4" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-    <div class="panel-body" style="position: relative;">
-      <p style="line-height: 1.38; font-size: 0.8rem;">
-        <span style="font-variant: normal; white-space: pre-wrap; font-size: 0.8rem; line-height: 1.38; font-family: Lato;">
-          <span style="font-weight: 400; color: rgb(0, 0, 0); font-size: 0.8rem; line-height: 1.38; font-family: Lato;">
-            <span style="text-decoration: none; font-style: normal; color: rgb(0, 0, 0); font-size: 0.8rem; line-height: 1.38; font-family: Lato;">
-              Yes and no. Taxplow is not a practice management system nor a CRM but a AI-powered Outcome-Driven Pricing™ sales enablement platform and in fact works smoothly with existing platforms like Karbon or Canopy once the sales is closed and work is ready to be scheduled. In fact, some of our members use Taxplow instead of a fancy CRM to track sales opportunities, however you do not need to replace your existing CRM to use Taxplow.
-            </span>
-          </span>
-        </span>
-      </p>
+    <div id="collapse-3" class="panel-collapse collapse" aria-expanded="false" style="height:0px;">
+      <div class="panel-body" style="position: relative;">
+        <p style="line-height:1.38; font-size:0.8rem;">
+          Yes! Taxplow uses AI and machine learning and data from millions of accounting transactions and engagements to cover just about every firm service, so that you are confident that you are not leaving money or opportunities on the table when it comes to closing highly profitable business clients. This includes client discovery questions and dynamic pricing for:
+        </p>
+        <ul>
+          <li style="list-style-type:disc"><span style="font-family:Lato; font-size:0.8rem;">Bookkeeping</span></li>
+          <li style="list-style-type:disc"><span style="font-family:Lato; font-size:0.8rem;">Tax Preparation</span></li>
+          <li style="list-style-type:disc"><span style="font-family:Lato; font-size:0.8rem;">Tax Advisory</span></li>
+          <li style="list-style-type:disc"><span style="font-family:Lato; font-size:0.8rem;">Outsourced CFO</span></li>
+          <li style="list-style-type:disc"><span style="font-family:Lato; font-size:0.8rem;">FP&amp;A</span></li>
+          <li style="list-style-type:disc"><span style="font-family:Lato; font-size:0.8rem;">Client Advisory</span></li>
+          <li style="list-style-type:disc"><span style="font-family:Lato; font-size:0.8rem;">Payroll</span></li>
+          <li style="list-style-type:disc"><span style="font-family:Lato; font-size:0.8rem;">Sales Tax</span></li>
+          <li style="list-style-type:disc"><span style="font-family:Lato; font-size:0.8rem;">Bill Pay</span></li>
+          <li style="list-style-type:disc"><span style="font-family:Lato; font-size:0.8rem;">IRS Tax Audits</span></li>
+          <li style="list-style-type:disc"><span style="font-family:Lato; font-size:0.8rem;">Cryptocurrency Taxes</span></li>
+          <li style="list-style-type:disc"><span style="font-family:Lato; font-size:0.8rem;">Personal Finance/Wealth Management</span></li>
+          <li style="list-style-type:disc"><span style="font-family:Lato; font-size:0.8rem;">and many more...</span></li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- FAQ 5 -->
-<div class="list-item panel" data-component="bundle">
-  <div class="background-item" data-was-processed="true"> </div>
-  <div class="panel-heading accordion-panel-heading" id="heading-D6OJ5lbDW5">
-    <div class="accordion-panel-heading-content">
-      <div class="accordion-title">
-        <h4 class="panel-title clearfix" style="position: relative;">
-          <span style="font-variant: normal; white-space: pre-wrap; font-size: 0.8rem; font-family: Lato;">
-            <span style="font-weight: 700; color: rgb(0, 0, 0); font-size: 0.8rem; font-family: Lato;">
-              <span style="text-decoration: none; font-style: normal; color: rgb(0, 0, 0); font-size: 0.8rem; font-family: Lato;">
-                Is Taxplow the same as having a list of questions that I ask on every call?
-              </span>
+  <!-- FAQ 4 -->
+  <div class="list-item panel" data-component="bundle">
+    <div class="background-item" data-was-processed="true"></div>
+    <div class="panel-heading accordion-panel-heading" id="heading-4">
+      <div class="accordion-panel-heading-content">
+        <div class="accordion-title">
+          <h4 class="panel-title clearfix" style="position: relative;">
+            <span style="font-variant: normal; white-space: pre-wrap; font-size: 0.8rem; font-family: Lato;">
+              <span style="font-weight: 700; color:#000;">But I have a practice management/CRM/proposal system already–will Taxplow replace this?</span>
             </span>
-          </span>
-        </h4>
-      </div>
-      <div class="accordion-indicator">
-        <div class="accordion-indicator-icon">
-          <a class="accordion-indicator-icon-element collapsed" data-frame-id="_l84scxqra" data-parent="#accordion-1" data-toggle="collapse" href="#collapse-D6OJ5lbDW5" role="button" aria-expanded="false" target="_parent">
-            <i class="fa fa-angle-down"></i>
-          </a>
+          </h4>
+        </div>
+        <div class="accordion-indicator">
+          <div class="accordion-indicator-icon">
+            <a class="accordion-indicator-icon-element collapsed" data-toggle="collapse" href="#collapse-4" role="button" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div id="collapse-D6OJ5lbDW5" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-    <div class="panel-body" style="position: relative;">
-      <p style="font-size: 0.8rem;">
-        <span style="font-variant: normal; white-space: pre-wrap; font-family: Lato; font-size: 0.8rem;">
-          <span style="font-weight: 400; color: rgb(0, 0, 0); font-family: Lato; font-size: 0.8rem;">
-            <span style="text-decoration: none; font-style: normal; color: rgb(0, 0, 0); font-family: Lato; font-size: 0.8rem;">
-              No. Taxplow uses machine learning to match what services your firm already offers to the questions you will ask clients. It lets you ask in a dynamic, conversational style that is purposely designed to build rapport and immediately make a great impression while always showing your value before your price.
-            </span>
-          </span>
-        </span>
-      </p>
+    <div id="collapse-4" class="panel-collapse collapse" aria-expanded="false" style="height:0px;">
+      <div class="panel-body" style="position: relative;">
+        <p style="line-height:1.38; font-size:0.8rem;">
+          Yes and no. Taxplow is not a practice management system nor a CRM but an AI-powered Outcome-Driven Pricing™ sales enablement platform and in fact works smoothly with existing platforms like Karbon or Canopy once the sale is closed and work is ready to be scheduled. Some members use Taxplow instead of a fancy CRM to track sales opportunities; however you do not need to replace your existing CRM to use Taxplow.
+        </p>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- FAQ 6 -->
-<div class="list-item panel" data-component="bundle">
-  <div class="background-item" data-was-processed="true"> </div>
-  <div class="panel-heading accordion-panel-heading" id="heading-W6hG34CU08">
-    <div class="accordion-panel-heading-content">
-      <div class="accordion-title">
-        <h4 class="panel-title clearfix" style="position: relative;">
-          <span style="font-variant: normal; white-space: pre-wrap; font-size: 0.8rem; font-family: Lato;">
-            <span style="font-weight: 700; color: rgb(0, 0, 0); font-size: 0.8rem; font-family: Lato;">
-              <span style="text-decoration: none; font-style: normal; color: rgb(0, 0, 0); font-size: 0.8rem; font-family: Lato;">
-                What if I don't have any leads? Does Taxplow get leads for me too?
-              </span>
+  <!-- FAQ 5 -->
+  <div class="list-item panel" data-component="bundle">
+    <div class="background-item" data-was-processed="true"></div>
+    <div class="panel-heading accordion-panel-heading" id="heading-D6OJ5lbDW5">
+      <div class="accordion-panel-heading-content">
+        <div class="accordion-title">
+          <h4 class="panel-title clearfix" style="position: relative;">
+            <span style="font-variant: normal; white-space: pre-wrap; font-size: 0.8rem; font-family: Lato;">
+              <span style="font-weight: 700; color:#000;">Is Taxplow the same as having a list of questions that I ask on every call?</span>
             </span>
-          </span>
-        </h4>
-      </div>
-      <div class="accordion-indicator">
-        <div class="accordion-indicator-icon">
-          <a class="accordion-indicator-icon-element collapsed" data-frame-id="_l84scxqra" data-parent="#accordion-1" data-toggle="collapse" href="#collapse-W6hG34CU08" role="button" aria-expanded="false" target="_parent">
-            <i class="fa fa-angle-down"></i>
-          </a>
+          </h4>
+        </div>
+        <div class="accordion-indicator">
+          <div class="accordion-indicator-icon">
+            <a class="accordion-indicator-icon-element collapsed" data-toggle="collapse" href="#collapse-D6OJ5lbDW5" role="button" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div id="collapse-W6hG34CU08" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
-    <div class="panel-body" style="position: relative;">
-      <p style="font-size: 0.8rem;">
-        <span style="font-variant: normal; white-space: pre-wrap; font-family: Lato; font-size: 0.8rem;">
-          <span style="font-weight: 400; color: rgb(0, 0, 0); font-family: Lato; font-size: 0.8rem;">
-            <span style="text-decoration: none; font-style: normal; color: rgb(0, 0, 0); font-family: Lato; font-size: 0.8rem;">
-              No Taxplow is not a marketing or "lead gen" service. Most of our members already have a steady lead source(s) and are looking to improve their closing rate, ensure they are charging the best fee possible and/or reprice existing clients with a reliable recurring monthly fee and escape the hassle of hourly fees. We optionally work with your existing marketing person and/or lead generation agency for the perfect hand-off from your first client meeting all the way to closing. If you already generate leads internally or via referrals, Taxplow makes it easier for high-value clients to say "Yes" to more profitable engagements with your firm. As part of our service, we help you analyze your existing lead flow to ensure you are getting the most qualified leads to maximize your chances of winning the most valuable and highest margin business clients and HNWIs.
-            </span>
-          </span>
-        </span>
-      </p>
+    <div id="collapse-D6OJ5lbDW5" class="panel-collapse collapse" aria-expanded="false" style="height:0px;">
+      <div class="panel-body" style="position: relative;">
+        <p style="font-size:0.8rem;">
+          No. Taxplow uses machine learning to match what services your firm already offers to the questions you will ask clients. It lets you ask in a dynamic, conversational style designed to build rapport and immediately make a great impression while always showing your value before your price.
+        </p>
+      </div>
     </div>
   </div>
-</div>
 
-</div><!-- /.panel-group -->
+  <!-- FAQ 6 -->
+  <div class="list-item panel" data-component="bundle">
+    <div class="background-item" data-was-processed="true"></div>
+    <div class="panel-heading accordion-panel-heading" id="heading-W6hG34CU08">
+      <div class="accordion-panel-heading-content">
+        <div class="accordion-title">
+          <h4 class="panel-title clearfix" style="position: relative;">
+            <span style="font-variant: normal; white-space: pre-wrap; font-size: 0.8rem; font-family: Lato;">
+              <span style="font-weight: 700; color:#000;">What if I don't have any leads? Does Taxplow get leads for me too?</span>
+            </span>
+          </h4>
+        </div>
+        <div class="accordion-indicator">
+          <div class="accordion-indicator-icon">
+            <a class="accordion-indicator-icon-element collapsed" data-toggle="collapse" href="#collapse-W6hG34CU08" role="button" aria-expanded="false"><i class="fa fa-angle-down"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="collapse-W6hG34CU08" class="panel-collapse collapse" aria-expanded="false" style="height:0px;">
+      <div class="panel-body" style="position: relative;">
+        <p style="font-size:0.8rem;">
+          No—Taxplow is not a marketing or "lead gen" service. Most members already have steady lead sources and want to improve close rate, ensure best-possible fees, and/or reprice existing clients to reliable monthly subscriptions. We can work with your existing marketing person/agency for a smooth hand-off from first meeting to close. If you generate leads via referrals or internally, Taxplow makes it easier for high-value clients to say “Yes.” As part of our service, we help analyze your lead flow to maximize qualified leads and win higher-margin clients and HNWIs.
+        </p>
+      </div>
+    </div>
+  </div>
+
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
+<!-- /FAQ ACCORDION (REPLACED) -->
+
+<!-- Vanilla JS accordion behavior -->
+<script>
+(function() {
+  var acc = document.getElementById('accordion-1');
+  if (!acc) return;
+
+  function closeAll() {
+    acc.querySelectorAll('.panel-collapse').forEach(function(pc) {
+      pc.classList.remove('in','show');
+      pc.style.height = '0px';
+      pc.setAttribute('aria-expanded', 'false');
+    });
+    acc.querySelectorAll('.accordion-indicator-icon-element').forEach(function(a){
+      a.classList.add('collapsed');
+      a.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  acc.querySelectorAll('.accordion-indicator-icon-element[data-toggle="collapse"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      var targetSel = a.getAttribute('href') || a.dataset.target;
+      if (!targetSel) return;
+      var panel = acc.querySelector(targetSel);
+      if (!panel) return;
+
+      var isOpen = panel.classList.contains('in') || panel.classList.contains('show') || panel.style.height === 'auto';
+
+      closeAll();
+
+      if (!isOpen) {
+        panel.classList.add('in','show');
+        panel.style.height = 'auto';
+        panel.setAttribute('aria-expanded', 'true');
+        a.classList.remove('collapsed');
+        a.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+})();
+</script>
+<!-- /Vanilla JS accordion behavior -->
+
+
+<script>
+(function() {
+  var acc = document.getElementById('accordion-1');
+  if (!acc) return;
+
+  function closeAll() {
+    acc.querySelectorAll('.panel-collapse').forEach(function(pc) {
+      pc.classList.remove('in','show');
+      pc.style.height = '0px';
+      pc.setAttribute('aria-expanded', 'false');
+    });
+    acc.querySelectorAll('.accordion-indicator-icon-element').forEach(function(a){
+      a.classList.add('collapsed');
+      a.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  acc.querySelectorAll('.accordion-indicator-icon-element[data-toggle="collapse"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      var targetSel = a.getAttribute('href') || a.dataset.target;
+      if (!targetSel) return;
+      var panel = acc.querySelector(targetSel);
+      if (!panel) return;
+
+      var isOpen = panel.classList.contains('in') || panel.classList.contains('show') || panel.style.height === 'auto';
+
+      closeAll();
+
+      if (!isOpen) {
+        panel.classList.add('in','show');
+        panel.style.height = 'auto';
+        panel.setAttribute('aria-expanded', 'true');
+        a.classList.remove('collapsed');
+        a.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+})();
+</script>
+
+
 
 <!-- Footer rows (as in your original) -->
 <div class="row" data-component="grid">
