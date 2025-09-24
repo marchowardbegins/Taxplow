@@ -9,58 +9,6 @@
   <link rel="stylesheet" type="text/css" href="assets/css-26fe6699-63a6-4e34-a307-1c762660eaf0_mhtml.blink"/>
   <link rel="stylesheet" type="text/css" href="assets/css-060cc430-7d25-4566-bb5c-3d6452a4ac83_mhtml.blink"/>
 
-  <!-- HERO gradient styles -->
-<style>
-  /* Subtle pastel gradient like the “Taxplow is for firms that…” section */
-  .tp-hero-wrap {
-    position: relative;
-    background: linear-gradient(180deg, #f2f7ff 0%, #f7fbff 35%, #ffffff 100%);
-    overflow: hidden;
-  }
-  .tp-hero-bg {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-  }
-  /* Optional: a very faint radial glow for depth */
-  .tp-hero-bg::before{
-    content:"";
-    position:absolute; inset:-20% -10% auto -10%;
-    height:60%;
-    background: radial-gradient(closest-side, rgba(5,108,249,0.10), rgba(5,108,249,0) 70%);
-    filter: blur(12px);
-  }
-  /* Ensure media sits above the gradient */
-  #heroPoster, #heroVideo, #heroPlayBtn { position: relative; z-index: 1; }
-</style>
-
-<style>
-  /* Force gradient on the entire HERO band */
-  #_hah7j1jt4{
-    position: relative; /* create stacking context for ::before */
-    background-image: linear-gradient(180deg, #f2f7ff 0%, #f7fbff 35%, #ffffff 100%);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-  }
-  /* very soft radial glow like the other section */
-  #_hah7j1jt4::before{
-    content:"";
-    position:absolute;
-    inset:-10% -5% 40% -5%;
-    background: radial-gradient(closest-side, rgba(5,108,249,0.12), rgba(5,108,249,0) 70%);
-    filter: blur(14px);
-    pointer-events: none;
-    z-index: 0;
-  }
-  /* keep hero media above the ::before glow */
-  #_hah7j1jt4 #heroPoster,
-  #_hah7j1jt4 #heroVideo,
-  #_hah7j1jt4 #heroPlayBtn {
-    position: relative;
-    z-index: 1;
-  }
-</style>
 
   <title>Taxplow - Charge for outcomes not hours.</title>
   <meta name="description" content="Command higher fees for your accounting and tax practice using AI."/>
