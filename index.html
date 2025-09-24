@@ -35,15 +35,88 @@
 <link rel="stylesheet" type="text/css" href="assets/styles.css"/>
 
 <!-- Additions: posters + big play button -->
-<style>
-  .video-card,.hero-video-card{position:relative;width:100%;max-width:100%;overflow:hidden;border-radius:8px}
-  .video-card img,.hero-video-card img{width:100%;height:auto;display:block}
-  .play-overlay{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(0deg,rgba(0,0,0,.28),rgba(0,0,0,.28));transition:background .2s ease;cursor:pointer}
-  .play-overlay:hover{background:linear-gradient(0deg,rgba(0,0,0,.35),rgba(0,0,0,.35))}
-  .play-icon{width:96px;height:96px;border-radius:999px;background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 10px 25px rgba(0,0,0,.25)}
-  .play-icon:before{content:"";display:block;width:0;height:0;margin-left:6px;border-left:26px solid #1a1a1a;border-top:16px solid transparent;border-bottom:16px solid transparent}
-  .video-card video,.hero-video-card video{width:100%;height:auto;display:block;outline:none;border:0}
-</style>
+<!-- HERO: poster + play overlay + video -->
+<section id="hero" style="position:relative; background:#fff;">
+  <!-- Poster -->
+  <img id="heroPoster" src="assets/marc hero taxplow.png" alt="Taxplow hero" 
+       style="width:100%; height:auto; display:block;">
+
+  <!-- Overlay Play Button -->
+  <button id="heroPlayBtn" aria-label="Play hero video"
+          style="
+            position:absolute; inset:0; margin:auto; width:120px; height:120px;
+            border:none; border-radius:60px; background:rgba(255,255,255,0.92);
+            display:flex; align-items:center; justify-content:center;
+            cursor:pointer; box-shadow:0 10px 30px rgba(0,0,0,.25);
+            transition:transform .2s ease;
+          "
+          onmouseover="this.style.transform='scale(1.05)';"
+          onmouseout="this.style.transform='scale(1)';">
+    <!-- White Play Icon (SVG) -->
+    <svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true">
+      <circle cx="32" cy="32" r="31" fill="none"></circle>
+      <polygon points="24,18 24,46 48,32" fill="#000" opacity=".9"></polygon>
+    </svg>
+  </button>
+
+  <!-- Video (starts muted but we unmute on click) -->
+  <video id="heroVideo"
+         playsinline
+         muted
+         preload="metadata"
+         poster="assets/marc hero taxplow.png"
+         style="width:100%; height:auto; display:none;">
+    <source src="https://github.com/marchowardbegins/Taxplow/releases/download/v1/1329_1729000884211Taxplow_Hero_Video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var btn = document.getElementById('heroPlayBtn');
+    var poster = document.getElementById('heroPoster');
+    var vid = document.getElementById('heroVideo');
+
+    if (!btn || !poster || !vid) return;
+
+    btn.addEventListener('click', async function () {
+      try {
+        // reveal the video
+        vid.style.display = 'block';
+        // iOS requires muted->unmuted transitions *after* play is initiated in some cases
+        vid.muted = false;
+        vid.controls = true; // show controls after click (optional)
+        vid.currentTime = 0;
+
+        await vid.play();
+
+        // hide overlay
+        btn.style.display = 'none';
+        poster.style.display = 'none';
+      } catch (e) {
+        // if autoplay with sound fails, fall back to muted play then unmute on user interaction
+        try {
+          vid.muted = true;
+          vid.style.display = 'block';
+          await vid.play();
+          btn.style.display = 'none';
+          poster.style.display = 'none';
+
+          // Tap-to-unmute handler
+          vid.addEventListener('click', function handleUnmuteOnce() {
+            vid.muted = false;
+            vid.volume = 1.0;
+            vid.removeEventListener('click', handleUnmuteOnce);
+          }, { once: true });
+
+        } catch (err) {
+          console.warn('Playback failed:', err);
+        }
+      }
+    });
+  });
+</script>
+
 </head>
 
 <body>
