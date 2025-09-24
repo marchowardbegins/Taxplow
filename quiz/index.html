@@ -2,106 +2,152 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Taxplow — Intake Quiz</title>
+  <title>Get Your Invite — Taxplow Quiz</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="noindex,follow" />
-  <meta name="description" content="Answer a few quick questions to get your tailored Taxplow plan." />
-
-  <!-- Minimal, local-only styling -->
+  <meta name="robots" content="index,follow" />
+  <meta name="description" content="Quick intake quiz to request your Taxplow invite." />
+  <link rel="icon" href="/assets/1074_6634b94fded7c_kartrausers.png" />
   <style>
-    :root { --bg:#ffffff; --ink:#0e1116; --muted:#5b6877; --brand:#056cf9; }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0; font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      color: var(--ink); background: var(--bg);
+    :root{
+      --brand:#056cf9;
+      --ink:#0f172a;
+      --muted:#64748b;
+      --bg:#ffffff;
+      --card:#ffffff;
     }
-    .wrap {
-      max-width: 920px; margin: 0 auto; padding: 32px 20px 48px;
-    }
-    header { text-align: center; margin-bottom: 16px; }
-    header img { height: 40px; width: auto; display: block; margin: 0 auto 10px; }
-    h1 {
-      margin: 0 0 4px; font-weight: 800; letter-spacing: -0.02em;
-      font-size: clamp(22px, 3.2vw, 32px);
-    }
-    p.lead { margin: 0 0 22px; color: var(--muted); font-size: 0.95rem; }
-
-    /* Frame shell (works for most form providers) */
-    .card {
-      background: #fff; border: 1px solid #e9eef5; border-radius: 14px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.06);
-      padding: 0; overflow: hidden;
-    }
-    .frame-wrap {
-      position: relative; width: 100%;
-      /* Forms are tall; start generous. Adjust if your provider supports auto-resize. */
-      min-height: 1600px;
-    }
-    .frame-wrap iframe {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; border: 0;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
     }
 
-    /* Little top banner if you want to link back home */
-    .crumbs { text-align: center; margin-top: 8px; font-size: 0.9rem; }
-    .crumbs a { color: var(--brand); text-decoration: none; }
-    .crumbs a:hover { text-decoration: underline; }
-
-    /* Safe-link styling for accessibility */
-    a, button { -webkit-tap-highlight-color: transparent; }
+    .hero{
+      position:relative; isolation:isolate;
+      padding:64px 16px 24px; overflow:hidden;
+    }
+    .hero:after{
+      content:""; position:absolute; inset:auto -10vw -25% -10vw; height:70vh; z-index:-1;
+      background:
+        radial-gradient(55vw 55vw at 10% 20%, rgba(5,108,249,.10), transparent 60%),
+        radial-gradient(45vw 45vw at 90% 10%, rgba(99,102,241,.10), transparent 60%),
+        radial-gradient(60vw 60vw at 50% 90%, rgba(16,185,129,.10), transparent 60%);
+      filter: blur(30px);
+    }
+    .wrap{max-width:940px;margin:0 auto;padding:0 16px}
+    .hero-inner{text-align:center}
+    .logo{display:block;margin:0 auto 20px;height:44px;width:auto}
+    h1{margin:0 0 10px;font-size:clamp(28px,4.4vw,42px);line-height:1.1;font-weight:800;letter-spacing:-.01em}
+    .sub{margin:0 auto 22px;max-width:800px;color:var(--muted);font-size:clamp(15px,2.2vw,18px);line-height:1.55}
+    .badge{
+      display:inline-flex;gap:8px;align-items:center;
+      padding:6px 10px;border-radius:999px;
+      font-size:13px;font-weight:600;color:#0b3a86;
+      background:rgba(5,108,249,.08);border:1px solid rgba(5,108,249,.18);
+      margin-bottom:10px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:16px;
+      box-shadow:0 10px 40px rgba(15,23,42,.08);
+      overflow:hidden;border:1px solid rgba(2,6,23,.06);
+    }
+    .card-head{
+      padding:18px 20px;border-bottom:1px solid rgba(2,6,23,.06);
+      display:flex;align-items:center;gap:10px;justify-content:center;background:#fff;
+    }
+    .dot{width:10px;height:10px;border-radius:999px;background:#056cf9;opacity:.25}
+    .iframe-wrap{width:100%;min-height:70vh;background:#fff}
+    iframe{display:block;width:100%;height:100vh;border:0}
+    .footer{margin:36px 0 60px;font-size:14px;color:var(--muted);text-align:center}
+    .footer a{color:#056cf9;text-decoration:none}
+    .footer a:hover{text-decoration:underline}
+    .crumbs{margin-top:8px}
+    .crumbs a{color:var(--muted);text-decoration:none}
+    .crumbs a:hover{color:#056cf9;text-decoration:underline}
+    @media (max-height:780px){ iframe{height:85vh} }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header aria-label="Taxplow">
-      <!-- Optional: swap src with your local logo path; or remove the <img>. -->
-      <img src="/assets/403807801258High_Res-01.png" alt="Taxplow" />
-      <h1>Quick Intake Quiz</h1>
-      <p class="lead">Answer a few questions so we can tailor your outcome-driven plan and pricing.</p>
-    </header>
+  <header class="hero">
+    <div class="wrap hero-inner">
+      <img class="logo" src="/assets/403807801258High_Res-01.png" alt="Taxplow" />
+      <div class="badge"><span>🔒</span>Secure intake • No spam</div>
+      <h1>Get Your Invite</h1>
+      <p class="sub">Answer a few quick questions so we can confirm fit and get you onboarded smoothly. This takes about 2–3 minutes.</p>
+      <div class="crumbs"><a href="/">← Back to home</a></div>
+    </div>
+  </header>
 
-    <main class="card" id="quiz">
-      <div class="frame-wrap">
-        <!-- 🔧 PASTE YOUR FORM EMBED HERE
-             OPTION A: IFRAME (replace YOUR_EMBED_URL with your provider URL)
-             <iframe src="https://YOUR_EMBED_URL" title="Taxplow Quiz" allow="fullscreen"></iframe>
-
-             OPTION B: SCRIPT EMBED (Typeform, Tally, Paperform, etc.)
-             Paste the full <script>…</script> or <div data-widget>…</div> exactly as provided.
-        -->
-
-        <!-- Example placeholder so the page isn’t blank; remove after you paste your real embed -->
+  <main class="wrap">
+    <section class="card" aria-label="Taxplow Invite Quiz">
+      <div class="card-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <div class="iframe-wrap">
+        <!-- JOTFORM EMBED (ID: 241578359718471) -->
         <iframe
-          srcdoc='
-            <style>
-              body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;padding:32px;color:#0e1116}
-              .box{max-width:720px;margin:0 auto;border:1px dashed #b9c6d6;border-radius:12px;padding:24px;background:#ffffff}
-              h2{margin:0 0 8px}
-              p{margin:0 0 14px;color:#5b6877}
-              code{background:#f4f7fb;padding:2px 6px;border-radius:6px}
-            </style>
-            <div class="box">
-              <h2>Embed goes here</h2>
-              <p>Replace this placeholder with your real form embed.</p>
-              <p>If your provider gave you an <code>&lt;iframe src="…"&gt;</code>, paste it in the parent page where instructed.</p>
-              <p>If they gave you a <code>&lt;script&gt;</code> snippet, paste that script block instead.</p>
-            </div>
-          '
-          title="Embed placeholder"
+          id="JotFormIFrame-241578359718471"
+          title="Taxplow Invite Quiz"
+          src="https://form.jotform.com/241578359718471"
+          allow="geolocation; microphone; camera; autoplay; encrypted-media; fullscreen"
+          allowtransparency="true"
+          scrolling="no"
+          frameborder="0"
+          style="min-width:100%;height:100vh;border:none;"
         ></iframe>
       </div>
-    </main>
+    </section>
 
-    <div class="crumbs" aria-label="Site navigation">
-      <a href="/">← Back to Taxplow</a>
-    </div>
-  </div>
+    <p class="footer">
+      Need help? Email <a href="mailto:support@taxplow.com">support@taxplow.com</a> •
+      <a href="/privacy/">Privacy</a> • <a href="/terms/">Terms</a>
+    </p>
+  </main>
 
-  <!-- Optional helper: auto-scroll to top when loading on mobile deep links -->
+  <!-- Auto-resize & scroll helpers for Jotform -->
   <script>
-    // If you later use a provider that postMessages height, you can listen here and resize the iframe.
-    // For now, we keep it minimal/no external ties.
+    (function () {
+      var iframe = document.getElementById("JotFormIFrame-241578359718471");
+      if (!iframe) return;
+
+      function receiveMessage(e) {
+        if (!e || !e.data || typeof e.data !== "string") return;
+        var parts = e.data.split(":");
+        if (!parts.length) return;
+
+        // Height message: "setHeight:241578359718471:1234"
+        if (parts[0] === "setHeight") {
+          var newH = parts[parts.length - 1];
+          if (!isNaN(newH)) iframe.style.height = newH + "px";
+        }
+
+        // Scroll into view
+        if (parts[0] === "scrollIntoView") {
+          iframe.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        // Set iframe URL (used by Jotform for redirects)
+        if (parts[0] === "setIframeUrl" && parts[parts.length - 1]) {
+          iframe.src = parts[parts.length - 1];
+        }
+      }
+      window.addEventListener("message", receiveMessage, false);
+
+      // Pass query string/hash to Jotform (keeps UTM, etc.)
+      function passQS() {
+        try {
+          var src = new URL(iframe.src);
+          var here = new URL(window.location.href);
+          if (here.search) src.search = here.search;
+          if (here.hash) src.hash = here.hash;
+          iframe.src = src.toString();
+        } catch (e) {}
+      }
+      passQS();
+    })();
   </script>
 </body>
 </html>
