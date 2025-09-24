@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Taxplow — Intake Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="description" content="Answer a few quick questions to get your tailored Taxplow plan." />
+
+  <!-- Minimal, local-only styling -->
+  <style>
+    :root { --bg:#ffffff; --ink:#0e1116; --muted:#5b6877; --brand:#056cf9; }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink); background: var(--bg);
+    }
+    .wrap {
+      max-width: 920px; margin: 0 auto; padding: 32px 20px 48px;
+    }
+    header { text-align: center; margin-bottom: 16px; }
+    header img { height: 40px; width: auto; display: block; margin: 0 auto 10px; }
+    h1 {
+      margin: 0 0 4px; font-weight: 800; letter-spacing: -0.02em;
+      font-size: clamp(22px, 3.2vw, 32px);
+    }
+    p.lead { margin: 0 0 22px; color: var(--muted); font-size: 0.95rem; }
+
+    /* Frame shell (works for most form providers) */
+    .card {
+      background: #fff; border: 1px solid #e9eef5; border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+      padding: 0; overflow: hidden;
+    }
+    .frame-wrap {
+      position: relative; width: 100%;
+      /* Forms are tall; start generous. Adjust if your provider supports auto-resize. */
+      min-height: 1600px;
+    }
+    .frame-wrap iframe {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; border: 0;
+    }
+
+    /* Little top banner if you want to link back home */
+    .crumbs { text-align: center; margin-top: 8px; font-size: 0.9rem; }
+    .crumbs a { color: var(--brand); text-decoration: none; }
+    .crumbs a:hover { text-decoration: underline; }
+
+    /* Safe-link styling for accessibility */
+    a, button { -webkit-tap-highlight-color: transparent; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header aria-label="Taxplow">
+      <!-- Optional: swap src with your local logo path; or remove the <img>. -->
+      <img src="/assets/403807801258High_Res-01.png" alt="Taxplow" />
+      <h1>Quick Intake Quiz</h1>
+      <p class="lead">Answer a few questions so we can tailor your outcome-driven plan and pricing.</p>
+    </header>
+
+    <main class="card" id="quiz">
+      <div class="frame-wrap">
+        <!-- 🔧 PASTE YOUR FORM EMBED HERE
+             OPTION A: IFRAME (replace YOUR_EMBED_URL with your provider URL)
+             <iframe src="https://YOUR_EMBED_URL" title="Taxplow Quiz" allow="fullscreen"></iframe>
+
+             OPTION B: SCRIPT EMBED (Typeform, Tally, Paperform, etc.)
+             Paste the full <script>…</script> or <div data-widget>…</div> exactly as provided.
+        -->
+
+        <!-- Example placeholder so the page isn’t blank; remove after you paste your real embed -->
+        <iframe
+          srcdoc='
+            <style>
+              body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;padding:32px;color:#0e1116}
+              .box{max-width:720px;margin:0 auto;border:1px dashed #b9c6d6;border-radius:12px;padding:24px;background:#ffffff}
+              h2{margin:0 0 8px}
+              p{margin:0 0 14px;color:#5b6877}
+              code{background:#f4f7fb;padding:2px 6px;border-radius:6px}
+            </style>
+            <div class="box">
+              <h2>Embed goes here</h2>
+              <p>Replace this placeholder with your real form embed.</p>
+              <p>If your provider gave you an <code>&lt;iframe src="…"&gt;</code>, paste it in the parent page where instructed.</p>
+              <p>If they gave you a <code>&lt;script&gt;</code> snippet, paste that script block instead.</p>
+            </div>
+          '
+          title="Embed placeholder"
+        ></iframe>
+      </div>
+    </main>
+
+    <div class="crumbs" aria-label="Site navigation">
+      <a href="/">← Back to Taxplow</a>
+    </div>
+  </div>
+
+  <!-- Optional helper: auto-scroll to top when loading on mobile deep links -->
+  <script>
+    // If you later use a provider that postMessages height, you can listen here and resize the iframe.
+    // For now, we keep it minimal/no external ties.
+  </script>
+</body>
+</html>
