@@ -6,7 +6,7 @@
   <meta name="description" content="Command higher fees for your accounting and tax practice using AI.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Kartra export CSS bundles (restore your original look & fonts) -->
+  <!-- Restore Kartra export CSS bundles (fonts + layout) -->
   <link rel="stylesheet" href="assets/css-0ee60140-c199-4a95-b984-2c17288cf9d9_mhtml.blink" type="text/css" />
   <link rel="stylesheet" href="assets/css-c95db45a-e176-496c-81f7-552f18008ef3_mhtml.blink" type="text/css" />
   <link rel="stylesheet" href="assets/css-a4ed0d3e-c4b9-45af-b6db-bc44bf08296a_mhtml.blink" type="text/css" />
@@ -14,29 +14,35 @@
   <link rel="stylesheet" href="assets/css-26fe6699-63a6-4e34-a307-1c762660eaf0_mhtml.blink" type="text/css" />
   <link rel="stylesheet" href="assets/css-060cc430-7d25-4566-bb5c-3d6452a4ac83_mhtml.blink" type="text/css" />
 
-  <!-- Your repo’s main styles (keep these too) -->
-  <link rel="stylesheet" href="assets/css.css" as="style" />
+  <!-- Your repo styles (keep) -->
+  <link rel="stylesheet" href="assets/css.css" />
   <link rel="stylesheet" href="assets/new_bootstrap.css" />
-  <link rel="stylesheet" href="assets/kartra_components.css" as="style" />
-  <link rel="stylesheet" href="assets/font-awesome.css" as="style" />
+  <link rel="stylesheet" href="assets/kartra_components.css" />
+  <link rel="stylesheet" href="assets/font-awesome.css" />
   <link rel="stylesheet" href="assets/styles.css" />
 
-  <!-- Optional: speed up font loads (same as original) -->
+  <!-- Preconnects (optional) -->
   <link rel="preconnect" href="https://app.kartra.com/" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin>
   <link rel="preconnect" href="https://d2uolguxr56s4e.cloudfront.net/" crossorigin>
-  <link rel="dns-prefetch" href="https://app.kartra.com/">
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com/">
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
-  <link rel="dns-prefetch" href="https://d2uolguxr56s4e.cloudfront.net/">
 
-  <!-- Keep any small custom styles you added AFTER the Kartra CSS so they don’t override fonts -->
   <style>
-    /* your small adjustments (play overlay etc) here */
+    /* Only small additions; Kartra CSS controls most styling */
+    .video-card { position: relative; max-width:100%; }
+    .video-card img,.video-card video { width:100%; height:auto; display:block; border-radius:12px; }
+    .play-overlay {
+      position:absolute; inset:0; display:grid; place-items:center;
+      background:rgba(0,0,0,.25); border:0; cursor:pointer; transition:background .16s ease;
+    }
+    .play-overlay:hover { background:rgba(0,0,0,.35); }
+    .play-icon { width:96px; height:96px; filter:drop-shadow(0 8px 24px rgba(0,0,0,.35)); }
+    .headline-center { text-align:center; }
+    .section { padding:60px 0; }
+    .section--light { background:#fff; }
+    .section--grey { background:#fcfcfc; }
   </style>
 </head>
-
 <body>
 
   <!-- NAV -->
@@ -45,6 +51,7 @@
       <div class="navbar-header nav-elem-col">
         <img class="kartra_image kartra_image--logo pull-left" src="assets/403807801258High_Res-01.png" alt="Taxplow" style="height:46px">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar_main">
+          <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
         </button>
       </div>
@@ -54,7 +61,7 @@
             <a class="kartra_button1 kartra_button1--light-gold kartra_button1--light-black-color kartra_button1--icon-right kartra_button1--solid kartra_button1--medium kartra_button1--squared"
                href="https://app.kartra.com/redirect_to/?asset=page&id=Gkt0gRyYvda4&kuid=32e91147-4cb2-4a47-8695-9ea8ef46295a-1758640811&kref=nmiautAz8Ja4"
                target="_parent"
-               style="font-weight:700;background:#056cf9;color:#fff;border-radius:3px">Get Invite</a>
+               style="font-weight:700;background:#056cf9;color:#fff;border-radius:3px;margin:20px 0">Get Invite</a>
           </div>
         </div>
       </div>
@@ -66,10 +73,14 @@
     <div class="container">
       <div class="row"><div class="col-md-10 col-md-offset-1">
         <p class="headline-center" style="color:#056cf9;margin-bottom:8px">ACCOUNTANTS - BOOKKEEPERS - TAX PROFESSIONALS</p>
-        <h1 class="headline-center" style="font-weight:800;margin-bottom:8px">Transform Low-Value 1040 and Bookkeeping Clients into High-Profit, Recurring Revenue</h1>
-        <p class="headline-center" style="font-size:18px;margin-bottom:28px">Confidently price your services based on outcomes, not hours. Generate tax, bookkeeping and outsourced CFO strategies using AI in seconds, not days.</p>
+        <h1 class="headline-center kartra_headline--montserrat-font kartra_headline--size-extra-giant" style="font-weight:800;margin-bottom:8px">
+          Transform Low-Value 1040 and Bookkeeping Clients into High-Profit, Recurring Revenue
+        </h1>
+        <p class="headline-center" style="font-size:18px;margin-bottom:28px">
+          Confidently price your services based on outcomes, not hours. Generate tax, bookkeeping and outsourced CFO strategies using AI in seconds, not days.
+        </p>
 
-        <!-- Play-on-click, sound ON -->
+        <!-- Play-on-click hero (sound ON) -->
         <div class="video-card hero-video"
              data-video-src="https://github.com/marchowardbegins/Taxplow/releases/download/v1/1329_1729000884211Taxplow_Hero_Video.mp4"
              data-poster="assets/marc%20hero%20taxplow.png">
@@ -97,16 +108,15 @@
     </div>
   </section>
 
-  <!-- TESTIMONIAL 1 -->
+  <!-- TESTIMONIALS -->
   <section class="section section--grey">
     <div class="container">
       <div class="row"><div class="col-md-10 col-md-offset-1">
         <h2 class="headline-center"><strong>Results from Our Members</strong></h2>
 
-        <div style="background:#fff;border-radius:15px;box-shadow:0 30px 70px rgba(0,0,0,.10);padding:24px;margin-bottom:32px">
+        <!-- Crider / Sadowski -->
+        <div class="kartra_element_bg" style="background:#fff;border-radius:15px;box-shadow:0 30px 70px rgba(0,0,0,.10);padding:24px;margin-bottom:32px">
           <h3 class="headline-center" style="margin-bottom:16px"><strong>Sadowski &amp; Co. CPAs - Closed $1M in new clients</strong></h3>
-
-          <!-- Play-on-click card -->
           <div class="video-card js-video"
                data-video-src="https://github.com/marchowardbegins/Taxplow/releases/download/v1/robert_crider_-_sadowski_testimonial-_edited.mp4"
                data-poster="assets/poster-crider.jpg">
@@ -118,29 +128,23 @@
               </svg>
             </button>
           </div>
-
           <p class="headline-center" style="max-width:760px;margin:16px auto 0">
-            We closed just about <strong>a million dollars in new sales</strong> using Taxplow, and it demonstrates to our clients our <strong>commitment to technology</strong>.
+            We closed just about <strong>a million dollars in new sales</strong> using Taxplow, demonstrating our <strong>commitment to technology</strong>.
           </p>
-
-          <div style="display:flex;align-items:center;gap:12px;justify-content:center;margin-top:12px">
-            <div style="width:72px;height:72px;border-radius:50%;background-size:cover;background-image:url('https://d11n7da8rpqbjy.cloudfront.net/wealthrook/247299730937robert_crider_photo.jpeg')"></div>
-            <div>
-              <strong style="color:#0561e0">Robert Crider, CPA</strong><br/>Sadowski &amp; Company CPAs
+          <div class="kartra_testimonial_author_block kartra_testimonial_author_block--flex kartra_testimonial_author_block--vertical-center pull-center" style="margin-top:12px;justify-content:center">
+            <div class="kartra_testimonial_author_block__image">
+              <div class="kartra_element_bg kartra_element_bg--thumb-size-special-large" style="border-radius:100px;background-size:cover;width:72px;height:72px;background-image:url('https://d11n7da8rpqbjy.cloudfront.net/wealthrook/247299730937robert_crider_photo.jpeg')"></div>
+            </div>
+            <div class="kartra_testimonial_author_block__info kartra_testimonial_author_block__info--padding-left-extra-small">
+              <div class="kartra_headline kartra_headline--pt-serif-font kartra_headline--h4" style="margin:0"><strong style="color:#0561e0">Robert Crider, CPA</strong></div>
+              <div class="kartra_text">Sadowski &amp; Company CPAs</div>
             </div>
           </div>
         </div>
-      </div></div>
-    </div>
-  </section>
 
-  <!-- TESTIMONIAL 2 -->
-  <section class="section section--grey">
-    <div class="container">
-      <div class="row"><div class="col-md-10 col-md-offset-1">
-        <div style="background:#fff;border-radius:15px;box-shadow:0 30px 70px rgba(0,0,0,.10);padding:24px;margin-bottom:32px">
+        <!-- Prewitt / Cohesion -->
+        <div class="kartra_element_bg" style="background:#fff;border-radius:15px;box-shadow:0 30px 70px rgba(0,0,0,.10);padding:24px;margin-bottom:32px">
           <h3 class="headline-center" style="margin-bottom:16px"><strong>Cohesion Advisors - Zero to $120,000 per month</strong></h3>
-
           <div class="video-card js-video"
                data-video-src="https://github.com/marchowardbegins/Taxplow/releases/download/v1/899_1707285149159prewitt_testimonial-v2.mp4"
                data-poster="assets/poster-prewitt.jpg">
@@ -152,29 +156,23 @@
               </svg>
             </button>
           </div>
-
           <p class="headline-center" style="max-width:760px;margin:16px auto 0">
-            With Taxplow, we've gone from zero to about <strong>$120,000 a month</strong>, targeting <strong>$200,000 a month</strong> by the end of 2024.
+            We’ve gone from zero to about <strong>$120,000 a month</strong>, targeting <strong>$200,000 a month</strong>.
           </p>
-
-          <div style="display:flex;align-items:center;gap:12px;justify-content:center;margin-top:12px">
-            <div style="width:72px;height:72px;border-radius:50%;background-size:cover;background-image:url('https://d11n7da8rpqbjy.cloudfront.net/wealthrook/533072611639john_mark_profile_image.jpeg')"></div>
-            <div>
-              <strong style="color:#0561e0">John Mark Prewitt, CPA</strong><br/>Cohesion Advisors
+          <div class="kartra_testimonial_author_block kartra_testimonial_author_block--flex kartra_testimonial_author_block--vertical-center pull-center" style="margin-top:12px;justify-content:center">
+            <div class="kartra_testimonial_author_block__image">
+              <div class="kartra_element_bg kartra_element_bg--thumb-size-special-large" style="border-radius:100px;background-size:cover;width:72px;height:72px;background-image:url('https://d11n7da8rpqbjy.cloudfront.net/wealthrook/533072611639john_mark_profile_image.jpeg')"></div>
+            </div>
+            <div class="kartra_testimonial_author_block__info kartra_testimonial_author_block__info--padding-left-extra-small">
+              <div class="kartra_headline kartra_headline--pt-serif-font kartra_headline--h4" style="margin:0"><strong style="color:#0561e0">John Mark Prewitt, CPA</strong></div>
+              <div class="kartra_text">Cohesion Advisors</div>
             </div>
           </div>
         </div>
-      </div></div>
-    </div>
-  </section>
 
-  <!-- TESTIMONIAL 3 -->
-  <section class="section section--grey">
-    <div class="container">
-      <div class="row"><div class="col-md-10 col-md-offset-1">
-        <div style="background:#fff;border-radius:15px;box-shadow:0 30px 70px rgba(0,0,0,.10);padding:24px">
+        <!-- Deese -->
+        <div class="kartra_element_bg" style="background:#fff;border-radius:15px;box-shadow:0 30px 70px rgba(0,0,0,.10);padding:24px">
           <h3 class="headline-center" style="margin-bottom:16px"><strong>Deese &amp; Co. CPAs - Recovered over $500,000 for client</strong></h3>
-
           <div class="video-card js-video"
                data-video-src="https://github.com/marchowardbegins/Taxplow/releases/download/v1/tyler_deese_taxplow_testimonial_video_-_FINAL.mp4"
                data-poster="assets/poster-deese.jpg">
@@ -186,23 +184,25 @@
               </svg>
             </button>
           </div>
-
           <p class="headline-center" style="max-width:760px;margin:16px auto 0">
             We saved a client well over <strong>$500,000</strong> in federal income taxes—and would have left a lot on the table without Taxplow.
           </p>
-
-          <div style="display:flex;align-items:center;gap:12px;justify-content:center;margin-top:12px">
-            <div style="width:72px;height:72px;border-radius:50%;background-size:cover;background-image:url('https://d11n7da8rpqbjy.cloudfront.net/wealthrook/95773206270tylerdeeseprofilepic-ezgif.com-webp-to-jpg-converter.jpg')"></div>
-            <div>
-              <strong style="color:#0561e0">Tyler Deese, CPA, CVA</strong><br/>Deese &amp; Company CPAs
+          <div class="kartra_testimonial_author_block kartra_testimonial_author_block--flex kartra_testimonial_author_block--vertical-center pull-center" style="margin-top:12px;justify-content:center">
+            <div class="kartra_testimonial_author_block__image">
+              <div class="kartra_element_bg kartra_element_bg--thumb-size-special-large" style="border-radius:100px;background-size:cover;width:72px;height:72px;background-image:url('https://d11n7da8rpqbjy.cloudfront.net/wealthrook/95773206270tylerdeeseprofilepic-ezgif.com-webp-to-jpg-converter.jpg')"></div>
+            </div>
+            <div class="kartra_testimonial_author_block__info kartra_testimonial_author_block__info--padding-left-extra-small">
+              <div class="kartra_headline kartra_headline--pt-serif-font kartra_headline--h4" style="margin:0"><strong style="color:#0561e0">Tyler Deese, CPA, CVA</strong></div>
+              <div class="kartra_text">Deese &amp; Company CPAs</div>
             </div>
           </div>
         </div>
+
       </div></div>
     </div>
   </section>
 
-  <!-- “FOR FIRMS THAT …” (from your page) -->
+  <!-- FOR WHOM SECTION -->
   <section class="section section--grey" id="fit">
     <div class="container">
       <div class="row"><div class="col-md-10 col-md-offset-1">
@@ -234,15 +234,15 @@
       <div class="row"><div class="col-md-10 col-md-offset-1">
         <div class="headline-center">
           <a class="kartra_button1 kartra_button1--default kartra_button1--solid kartra_button1--medium kartra_button1--squared"
-            href="https://app.kartra.com/redirect_to/?asset=page&id=Gkt0gRyYvda4&kuid=32e91147-4cb2-4a47-8695-9ea8ef46295a-1758640811&kref=nmiautAz8Ja4"
-            target="_parent"
-            style="background:#056cf9;color:#fff;border-radius:3px;margin-top:30px">Get Invite</a>
+             href="https://app.kartra.com/redirect_to/?asset=page&id=Gkt0gRyYvda4&kuid=32e91147-4cb2-4a47-8695-9ea8ef46295a-1758640811&kref=nmiautAz8Ja4"
+             target="_parent"
+             style="background:#056cf9;color:#fff;border-radius:3px;margin-top:30px">Get Invite</a>
         </div>
       </div></div>
     </div>
   </section>
 
-  <!-- FAQ (condensed—matches tone/content) -->
+  <!-- FAQ -->
   <section class="section section--light" id="faq">
     <div class="container">
       <div class="row"><div class="col-md-10 col-md-offset-1">
@@ -309,46 +309,42 @@
     </div>
   </footer>
 
-  <!-- JS: jQuery/Bootstrap (if you keep your existing bootstrap, these may already be bundled) -->
+  <!-- jQuery + Bootstrap (needed for collapse/accordion if not already bundled) -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
 
-  <!-- Video overlay behavior (sound ON on click) -->
+  <!-- Play overlays: click -> replace with video, sound ON -->
   <script>
-  (function () {
-    function activateCard(card) {
-      const src = card.getAttribute('data-video-src');
-      const poster = card.getAttribute('data-poster');
+    (function () {
+      function activateCard(card) {
+        const src = card.getAttribute('data-video-src');
+        const poster = card.getAttribute('data-poster');
 
-      const video = document.createElement('video');
-      video.setAttribute('controls','');
-      video.setAttribute('playsinline','');
-      video.preload = 'metadata';
-      if (poster) video.poster = poster;
-      video.style.width = '100%';
+        const video = document.createElement('video');
+        video.setAttribute('controls','');
+        video.setAttribute('playsinline','');
+        video.preload = 'metadata';
+        if (poster) video.poster = poster;
+        video.style.width = '100%';
 
-      const source = document.createElement('source');
-      source.src = src;
-      source.type = 'video/mp4';
-      video.appendChild(source);
+        const source = document.createElement('source');
+        source.src = src;
+        source.type = 'video/mp4';
+        video.appendChild(source);
 
-      card.innerHTML = '';
-      card.appendChild(video);
+        card.innerHTML = '';
+        card.appendChild(video);
 
-      // Start with sound ON (click is a user gesture)
-      video.muted = false;
-      video.volume = 1.0;
-      video.play().catch(function(){ /* some mobile UAs may require another tap */ });
-    }
-
-    // Hero and testimonial cards
-    document.querySelectorAll('.video-card').forEach(function(card){
-      const btn = card.querySelector('.play-overlay');
-      if (btn) {
-        btn.addEventListener('click', function(){ activateCard(card); });
+        video.muted = false;       // sound ON
+        video.volume = 1.0;
+        video.play().catch(function(){});
       }
-    });
-  })();
+
+      document.querySelectorAll('.video-card').forEach(function(card){
+        const btn = card.querySelector('.play-overlay');
+        if (btn) btn.addEventListener('click', function(){ activateCard(card); });
+      });
+    })();
   </script>
 </body>
 </html>
