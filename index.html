@@ -455,9 +455,7 @@
             display:flex;align-items:center;justify-content:center;
             cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.25);
             transition:transform .2s ease;
-          "
-          onmouseover="this.style.transform='scale(1.05)';"
-          onmouseout="this.style.transform='scale(1)';">
+          ">
     <svg viewBox="0 0 64 64" width="56" height="56" aria-hidden="true">
       <circle cx="32" cy="32" r="31" fill="none"></circle>
       <polygon points="24,18 24,46 48,32" fill="#000" opacity=".9"></polygon>
@@ -538,13 +536,119 @@
         document.addEventListener('DOMContentLoaded', function () {
           console.log('Setting up video players...');
           
-          // ALL videos (hero + testimonials): buttons with class .tp-play and video element .tp-video-el
+          // Find hero button and all video buttons
+          var heroSection = document.querySelector('#hero');
+          var heroBtn = heroSection ? heroSection.querySelector('.tp-play') : null;
           var allVideoBtns = document.querySelectorAll('.tp-play');
-          console.log('Found video buttons (hero + testimonials):', allVideoBtns.length);
+          console.log('Found video buttons:', allVideoBtns.length, 'Hero button found:', !!heroBtn);
           
-          allVideoBtns.forEach(function (playBtn) {
+          // CLEAN HERO HANDLER - single, clean click handler
+          if (heroBtn) {
+            console.log('Adding CLEAN click handler to hero button');
+            
+            // Remove the hero button from the general loop to avoid conflicts
+            heroBtn.setAttribute('data-hero-handled', 'true');
+            
+            // Debug: Check button properties
+            console.log('Hero button properties:', {
+              disabled: heroBtn.disabled,
+              style: heroBtn.style.cssText,
+              pointerEvents: window.getComputedStyle(heroBtn).pointerEvents,
+              zIndex: window.getComputedStyle(heroBtn).zIndex,
+              position: window.getComputedStyle(heroBtn).position
+            });
+            
+            // Fix CSS layering issue - ensure button is above background
+            heroBtn.style.zIndex = '10';
+            heroBtn.style.pointerEvents = 'auto';
+            
+            // Make sure background div doesn't block clicks
+            var heroBg = heroSection.querySelector('.tp-hero-bg');
+            if (heroBg) {
+              heroBg.style.pointerEvents = 'none';
+              console.log('Fixed background pointer-events');
+            }
+            
+            // Add multiple event listeners to debug
+            heroBtn.addEventListener('mousedown', function(e) {
+              console.log('HERO: Mouse down detected!');
+            });
+            
+            heroBtn.addEventListener('mouseup', function(e) {
+              console.log('HERO: Mouse up detected!');
+            });
+            
+            heroBtn.addEventListener('click', function(e) {
+              console.log('HERO: Button clicked!');
+              e.preventDefault();
+              e.stopPropagation();
+              
+              var heroVideo = heroSection.querySelector('.tp-video-el');
+              var heroPoster = heroSection.querySelector('.tp-poster');
+              
+              if (heroVideo && !heroVideo.src) {
+                var src = heroVideo.getAttribute('data-src');
+                console.log('HERO: Loading video:', src);
+                
+                if (src) {
+                  heroVideo.src = src;
+                  heroVideo.muted = false; // Enable sound
+                  heroVideo.controls = true; // Show video controls
+                  heroVideo.load();
+                  heroVideo.play().then(function() {
+                    console.log('HERO: Video playing with sound and controls!');
+                    // Show the video and hide button/poster
+                    heroVideo.style.display = 'block';
+                    heroBtn.style.display = 'none';
+                    if (heroPoster) heroPoster.style.display = 'none';
+                  }).catch(function(error) {
+                    console.error('HERO: Video play failed:', error);
+                    // If unmuted play fails, try muted
+                    heroVideo.muted = true;
+                    heroVideo.play().catch(function(err) {
+                      console.error('HERO: Muted play also failed:', err);
+                    });
+                  });
+                }
+              } else if (heroVideo && heroVideo.src) {
+                // Video is already loaded, just play it
+                console.log('HERO: Video already loaded, playing...');
+                heroVideo.muted = false; // Enable sound
+                heroVideo.controls = true; // Show video controls
+                heroVideo.play().then(function() {
+                  console.log('HERO: Video playing with sound and controls!');
+                  // Show the video and hide button/poster
+                  heroVideo.style.display = 'block';
+                  heroBtn.style.display = 'none';
+                  if (heroPoster) heroPoster.style.display = 'none';
+                }).catch(function(error) {
+                  console.error('HERO: Video play failed:', error);
+                  // If unmuted play fails, try muted
+                  heroVideo.muted = true;
+                  heroVideo.play().catch(function(err) {
+                    console.error('HERO: Muted play also failed:', err);
+                  });
+                });
+              }
+            });
+          }
+          
+          // Global click listener for debugging
+          document.addEventListener('click', function(e) {
+            if (heroSection && heroSection.contains(e.target)) {
+              console.log('GLOBAL: Click detected in hero section on:', e.target.tagName, e.target.className);
+            }
+          });
+          
+          allVideoBtns.forEach(function (playBtn, index) {
+            // Skip hero button since we handle it separately
+            if (playBtn.getAttribute('data-hero-handled') === 'true') {
+              console.log(`Skipping hero button ${index} - handled separately`);
+              return;
+            }
+            
             playBtn.addEventListener('click', async function (ev) {
-              console.log('Video play button clicked');
+              console.log(`Testimonial video ${index} clicked!`);
               
               // find the nearest container and video element
               var container = playBtn.closest('.tp-video');
@@ -574,6 +678,7 @@
               }
             });
           });
+          
         });
       })();
     </script>
