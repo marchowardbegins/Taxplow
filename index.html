@@ -439,16 +439,16 @@
               </div>
 
 <!-- HERO: poster + play overlay + video (with pastel gradient) -->
-<section id="hero" class="tp-hero-wrap">
+<section id="hero" class="tp-hero-wrap tp-video">
   <!-- Gradient background layer -->
   <div class="tp-hero-bg" aria-hidden="true"></div>
 
   <!-- Poster -->
-  <img id="heroPoster" src="assets/marc hero taxplow.png" alt="Taxplow hero"
+  <img class="tp-poster" src="assets/marc hero taxplow.png" alt="Taxplow hero"
        style="width:100%;height:auto;display:block;">
 
   <!-- Overlay Play Button -->
-  <button id="heroPlayBtn" aria-label="Play hero video"
+  <button class="tp-play" aria-label="Play hero video"
           style="
             position:absolute;inset:0;margin:auto;width:120px;height:120px;
             border:none;border-radius:60px;background:rgba(255,255,255,0.92);
@@ -465,7 +465,7 @@
   </button>
 
   <!-- Video -->
-  <video id="heroVideo"
+  <video class="tp-video-el"
          playsinline
          muted
          preload="metadata"
@@ -538,66 +538,25 @@
         document.addEventListener('DOMContentLoaded', function () {
           console.log('Setting up video players...');
           
-          // Hero - using the same pattern as testimonials
-          var heroBtn = document.getElementById('heroPlayBtn');
-          if (heroBtn) {
-            console.log('Hero button found, setting up click handler');
-            heroBtn.addEventListener('click', async function (ev) {
-              console.log('Hero play button clicked');
-              
-              // find the nearest container and video element (same as testimonials)
-              var container = heroBtn.closest('#hero');
-              if (!container) container = heroBtn.parentElement;
-              var videoEl = container ? container.querySelector('#heroVideo') : null;
-              var posterImg = container ? container.querySelector('#heroPoster') : null;
-              
-              console.log('Hero elements found:', { container, videoEl, posterImg });
-              
-              if (!videoEl) {
-                console.error('Hero video element not found');
-                return;
-              }
-              
-              var src = videoEl.getAttribute('data-src');
-              console.log('Hero video source:', src);
-              
-              if (src) {
-                try {
-                  await addSourceAndPlay(videoEl, src);
-                  // hide play button and poster if present
-                  if (posterImg) posterImg.style.display = 'none';
-                  heroBtn.style.display = 'none';
-                  console.log('Hero video playing successfully');
-                } catch (error) {
-                  console.error('Hero video failed to play:', error);
-                }
-              } else {
-                console.error('No video source found for hero video');
-              }
-            });
-          } else {
-            console.error('Hero button not found');
-          }
-
-          // Testimonials: buttons with class .tp-play and video element .tp-video-el
-          var testimonialBtns = document.querySelectorAll('.tp-play');
-          console.log('Found testimonial buttons:', testimonialBtns.length);
+          // ALL videos (hero + testimonials): buttons with class .tp-play and video element .tp-video-el
+          var allVideoBtns = document.querySelectorAll('.tp-play');
+          console.log('Found video buttons (hero + testimonials):', allVideoBtns.length);
           
-          testimonialBtns.forEach(function (playBtn) {
+          allVideoBtns.forEach(function (playBtn) {
             playBtn.addEventListener('click', async function (ev) {
-              console.log('Testimonial play button clicked');
+              console.log('Video play button clicked');
               
               // find the nearest container and video element
               var container = playBtn.closest('.tp-video');
               if (!container) container = playBtn.parentElement;
               var videoEl = container ? container.querySelector('.tp-video-el') : null;
               if (!videoEl) {
-                console.error('Testimonial video element not found');
+                console.error('Video element not found');
                 return;
               }
               
               var src = videoEl.getAttribute('data-src');
-              console.log('Testimonial video source:', src);
+              console.log('Video source:', src);
               
               if (src) {
                 try {
@@ -606,12 +565,12 @@
                   var posterImg = container.querySelector('.tp-poster');
                   if (posterImg) posterImg.style.display = 'none';
                   playBtn.style.display = 'none';
-                  console.log('Testimonial video playing successfully');
+                  console.log('Video playing successfully');
                 } catch (error) {
-                  console.error('Testimonial video failed to play:', error);
+                  console.error('Video failed to play:', error);
                 }
               } else {
-                console.error('No video source found for testimonial video');
+                console.error('No video source found');
               }
             });
           });
