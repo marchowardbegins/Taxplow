@@ -13,7 +13,7 @@
 
   <!-- Layout tweaks -->
   <style id="full-bleed-fix">
-    /* kill Bootstrap’s side padding on the outer wrapper */
+    /* kill Bootstrap's side padding on the outer wrapper */
     .page.container-fluid { padding-left: 0 !important; padding-right: 0 !important; }
 
     /* make sure section backgrounds can actually reach the edges */
@@ -22,6 +22,277 @@
       position: absolute; inset: 0; background-size: cover; background-position: center;
     }
     .content > .background_changer_overlay { position:absolute; inset:0; }
+  </style>
+
+  <!-- Modern Enhancements -->
+  <style id="modern-enhancements">
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Scroll progress indicator */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: linear-gradient(90deg, #056cf9, #0561e0);
+      z-index: 9999;
+      transition: width 0.1s ease;
+    }
+
+    /* Floating background elements */
+    .floating-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .floating-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(5, 108, 249, 0.1), rgba(5, 97, 224, 0.05));
+      animation: float 20s infinite linear;
+    }
+
+    .floating-circle:nth-child(1) {
+      width: 80px;
+      height: 80px;
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .floating-circle:nth-child(2) {
+      width: 120px;
+      height: 120px;
+      top: 60%;
+      right: 15%;
+      animation-delay: -7s;
+    }
+
+    .floating-circle:nth-child(3) {
+      width: 60px;
+      height: 60px;
+      top: 80%;
+      left: 20%;
+      animation-delay: -14s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-30px) rotate(120deg); }
+      66% { transform: translateY(15px) rotate(240deg); }
+    }
+
+    /* Enhanced hero section */
+    .tp-hero-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tp-hero-wrap:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 35px 70px rgba(0, 0, 0, 0.2);
+    }
+
+    .tp-hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(5, 108, 249, 0.1), rgba(5, 97, 224, 0.05));
+      z-index: 1;
+    }
+
+    /* Enhanced testimonial cards */
+    .kartra_element_bg {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kartra_element_bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .kartra_element_bg:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .kartra_element_bg:hover::before {
+      left: 100%;
+    }
+
+    /* Enhanced CTA buttons */
+    .kartra_button1 {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      text-transform: none;
+      letter-spacing: 0.5px;
+    }
+
+    .kartra_button1::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .kartra_button1:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(5, 108, 249, 0.3);
+    }
+
+    .kartra_button1:hover::before {
+      left: 100%;
+    }
+
+    /* Enhanced video play buttons */
+    .tp-play, #heroPlayBtn {
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .tp-play:hover, #heroPlayBtn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Scroll animations */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-left {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: all 0.6s ease;
+    }
+
+    .fade-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .fade-in-right {
+      opacity: 0;
+      transform: translateX(30px);
+      transition: all 0.6s ease;
+    }
+
+    .fade-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Enhanced FAQ accordion */
+    .accordion-panel-heading {
+      transition: all 0.3s ease;
+      border-radius: 10px;
+    }
+
+    .accordion-panel-heading:hover {
+      background: rgba(5, 108, 249, 0.05);
+    }
+
+    /* Modern gradient overlays */
+    .gradient-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(5, 108, 249, 0.1), rgba(5, 97, 224, 0.05));
+      pointer-events: none;
+    }
+
+    /* Enhanced navigation */
+    .navbar {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.95) !important;
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(255, 255, 255, 0.98) !important;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Loading animation */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s ease;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #056cf9;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Mobile optimizations */
+    @media (max-width: 768px) {
+      .floating-circle {
+        display: none;
+      }
+      
+      .tp-hero-wrap:hover {
+        transform: none;
+      }
+      
+      .kartra_element_bg:hover {
+        transform: none;
+      }
+    }
   </style>
 
   <title>Taxplow - Charge for outcomes not hours.</title>
@@ -74,6 +345,16 @@
 
   <!-- Kartra tracker (kept) -->
   <div class="js_kartra_trackable_object" data-kt-owner="AgqD2Xep" data-kt-type="kartra_page_tracking" data-kt-value="nmiautAz8Ja4" style="height:0px;width:0px;opacity:0;position:fixed"></div>
+
+  <!-- Scroll progress indicator -->
+  <div class="scroll-progress"></div>
+
+  <!-- Floating background elements -->
+  <div class="floating-elements">
+    <div class="floating-circle"></div>
+    <div class="floating-circle"></div>
+    <div class="floating-circle"></div>
+  </div>
 
   <div id="page" class="page container-fluid">
     <div id="page_background_color" class="row">
@@ -137,21 +418,21 @@
             <div class="js_kartra_component_holder">
 
               <!-- Top micro-headline -->
-              <div data-component="headline" id="3D1ipkkuUM">
+              <div data-component="headline" id="3D1ipkkuUM" class="fade-in-up">
                 <div class="kartra_headline kartra_headline--lato-font kartra_headline--letter-spacing-small kartra_headline--font-weight-bold kartra_headline--h5 kartra_headline--text-center kartra_headline--orange-tomato" style="position:relative;">
                   <p><span style="color:#056cf9;">ACCOUNTANTS - BOOKKEEPERS - TAX PROFESSIONALS</span></p>
                 </div>
               </div>
 
               <!-- H1 -->
-              <div data-component="headline" id="eP66JJpuLq">
+              <div data-component="headline" id="eP66JJpuLq" class="fade-in-up">
                 <div class="kartra_headline kartra_headline--dim-black kartra_headline--montserrat-font kartra_headline--h1 kartra_headline--size-extra-giant kartra_headline--font-weight-bold kartra_headline--text-center kartra_headline--margin-bottom-medium" style="position:relative;">
                   <p>Transform Lower-Value 1040 and Bookkeeping Clients into High-Profit, Recurring Revenue</p>
                 </div>
               </div>
 
               <!-- Subhead -->
-              <div data-component="text">
+              <div data-component="text" class="fade-in-up">
                 <div class="kartra_text kartra_text--light-grey kartra_text--text-extra-medium kartra_text--text-center kartra_text--margin-bottom-medium" style="position:relative;">
                   <p><span style="font-family:Montserrat;">Confidently price your services based on outcomes, not hours. Generate tax, bookkeeping and outsourced CFO strategies using AI in seconds, not days.</span></p>
                 </div>
@@ -255,33 +536,83 @@
         }
 
         document.addEventListener('DOMContentLoaded', function () {
-          // Hero
-          var btn = document.getElementById('heroPlayBtn');
-          var poster = document.getElementById('heroPoster');
-          var vid = document.getElementById('heroVideo');
-          if (btn && poster && vid) {
-            btn.addEventListener('click', async function () {
-              var src = vid.getAttribute('data-src');
-              if (src) await addSourceAndPlay(vid, src);
-              btn.style.display = 'none';
-              poster.style.display = 'none';
+          console.log('Setting up video players...');
+          
+          // Hero - using the same pattern as testimonials
+          var heroBtn = document.getElementById('heroPlayBtn');
+          if (heroBtn) {
+            console.log('Hero button found, setting up click handler');
+            heroBtn.addEventListener('click', async function (ev) {
+              console.log('Hero play button clicked');
+              
+              // find the nearest container and video element (same as testimonials)
+              var container = heroBtn.closest('#hero');
+              if (!container) container = heroBtn.parentElement;
+              var videoEl = container ? container.querySelector('#heroVideo') : null;
+              var posterImg = container ? container.querySelector('#heroPoster') : null;
+              
+              console.log('Hero elements found:', { container, videoEl, posterImg });
+              
+              if (!videoEl) {
+                console.error('Hero video element not found');
+                return;
+              }
+              
+              var src = videoEl.getAttribute('data-src');
+              console.log('Hero video source:', src);
+              
+              if (src) {
+                try {
+                  await addSourceAndPlay(videoEl, src);
+                  // hide play button and poster if present
+                  if (posterImg) posterImg.style.display = 'none';
+                  heroBtn.style.display = 'none';
+                  console.log('Hero video playing successfully');
+                } catch (error) {
+                  console.error('Hero video failed to play:', error);
+                }
+              } else {
+                console.error('No video source found for hero video');
+              }
             });
+          } else {
+            console.error('Hero button not found');
           }
 
           // Testimonials: buttons with class .tp-play and video element .tp-video-el
-          document.querySelectorAll('.tp-play').forEach(function (playBtn) {
+          var testimonialBtns = document.querySelectorAll('.tp-play');
+          console.log('Found testimonial buttons:', testimonialBtns.length);
+          
+          testimonialBtns.forEach(function (playBtn) {
             playBtn.addEventListener('click', async function (ev) {
+              console.log('Testimonial play button clicked');
+              
               // find the nearest container and video element
               var container = playBtn.closest('.tp-video');
               if (!container) container = playBtn.parentElement;
               var videoEl = container ? container.querySelector('.tp-video-el') : null;
-              if (!videoEl) return;
+              if (!videoEl) {
+                console.error('Testimonial video element not found');
+                return;
+              }
+              
               var src = videoEl.getAttribute('data-src');
-              if (src) await addSourceAndPlay(videoEl, src);
-              // hide play button and poster if present
-              var posterImg = container.querySelector('.tp-poster');
-              if (posterImg) posterImg.style.display = 'none';
-              playBtn.style.display = 'none';
+              console.log('Testimonial video source:', src);
+              
+              if (src) {
+                try {
+                  await addSourceAndPlay(videoEl, src);
+                  // hide play button and poster if present
+                  var posterImg = container.querySelector('.tp-poster');
+                  if (posterImg) posterImg.style.display = 'none';
+                  playBtn.style.display = 'none';
+                  console.log('Testimonial video playing successfully');
+                } catch (error) {
+                  console.error('Testimonial video failed to play:', error);
+                }
+              } else {
+                console.error('No video source found for testimonial video');
+              }
             });
           });
         });
@@ -330,7 +661,7 @@
               </div>
             </div>
 
-            <div class="kartra_element_bg kartra_element_bg--padding-medium kartra_element_bg--padding-bottom-extra-medium kartra_element_bg--sm-padding-special-medium-important js_kartra_component_holder" data-component="bundle">
+            <div class="kartra_element_bg kartra_element_bg--padding-medium kartra_element_bg--padding-bottom-extra-medium kartra_element_bg--sm-padding-special-medium-important js_kartra_component_holder fade-in-up" data-component="bundle">
               <div class="background-item" style="background-color:#fff;border-radius:15px;box-shadow:0 30px 70px rgba(0,0,0,.10);" data-was-processed="true"></div>
 
               <div data-component="headline">
@@ -410,7 +741,7 @@
       <div data-component="grid" class="row row--equal">
         <div class="col-md-10 col-md-offset-1">
           <div class="js_kartra_component_holder">
-            <div class="kartra_element_bg kartra_element_bg--padding-medium kartra_element_bg--padding-bottom-extra-medium kartra_element_bg--sm-padding-special-medium-important js_kartra_component_holder" data-component="bundle" id="L0KMov2VqQ">
+            <div class="kartra_element_bg kartra_element_bg--padding-medium kartra_element_bg--padding-bottom-extra-medium kartra_element_bg--sm-padding-special-medium-important js_kartra_component_holder fade-in-up" data-component="bundle" id="L0KMov2VqQ">
               <div class="background-item" style="background-color:#fff;border-radius:15px;box-shadow:0 30px 70px rgba(0,0,0,.10);" data-was-processed="true"></div>
               <div data-component="headline">
                 <div class="kartra_headline kartra_headline--size-m-giant kartra_headline--lato-font kartra_headline--font-weight-medium kartra_headline--text-center kartra_headline--dim-black kartra_headline--margin-bottom-special-medium">
@@ -483,7 +814,7 @@
       <div data-component="grid" class="row row--equal">
         <div class="col-md-10 col-md-offset-1">
           <div class="js_kartra_component_holder">
-            <div class="kartra_element_bg kartra_element_bg--padding-medium kartra_element_bg--padding-bottom-extra-medium kartra_element_bg--sm-padding-special-medium-important js_kartra_component_holder" data-component="bundle" id="L0KMov2VqQ_7dC32eA8ii">
+            <div class="kartra_element_bg kartra_element_bg--padding-medium kartra_element_bg--padding-bottom-extra-medium kartra_element_bg--sm-padding-special-medium-important js_kartra_component_holder fade-in-up" data-component="bundle" id="L0KMov2VqQ_7dC32eA8ii">
               <div class="background-item" style="background-color:#fff;border-radius:15px;box-shadow:0 30px 70px rgba(0,0,0,.10);" data-was-processed="true"></div>
               <div data-component="headline">
                 <div class="kartra_headline kartra_headline--size-m-giant kartra_headline--lato-font kartra_headline--font-weight-medium kartra_headline--text-center kartra_headline--dim-black kartra_headline--margin-bottom-special-medium">
@@ -571,7 +902,7 @@
       <div data-component="grid" class="row row--equal">
         <div class="col-md-6">
           <div class="js_kartra_component_holder">
-            <div data-component="list">
+            <div data-component="list" class="fade-in-left">
               <ul class="kartra_list">
                 <li class="kartra_list__item kartra_list__item--flex"><div class="kartra_icon kartra_icon--deep-coral-04 kartra_icon--no-shrink kartra_icon--top-adjust kartra_icon--negative-margin-top-big-tiny kartra_icon--large"><span class="kartra_icon__icon fa fa-check-square-o" style="color:#056cf9;"></span></div><div class="kartra_item_info kartra_item_info--padding-left-extra-small kartra_item_info--flex-1"><div class="kartra_item_info__headline kartra_item_info__headline--very-dark-slate-blue kartra_item_info__headline--lato-font kartra_item_info__headline--font-weight-bold kartra_item_info__headline--h5" style="margin-bottom:50px;"><p>Want predictable recurring subscription revenues</p></div></div></li>
                 <li class="kartra_list__item kartra_list__item--flex"><div class="kartra_icon kartra_icon--deep-coral-04 kartra_icon--no-shrink kartra_icon--top-adjust kartra_icon--negative-margin-top-big-tiny kartra_icon--large"><span class="kartra_icon__icon fa fa-check-square-o" style="color:#056cf9;"></span></div><div class="kartra_item_info kartra_item_info--padding-left-extra-small kartra_item_info--flex-1"><div class="kartra_item_info__headline kartra_item_info__headline--very-dark-slate-blue kartra_item_info__headline--lato-font kartra_item_info__headline--font-weight-bold kartra_item_info__headline--h5" style="margin-bottom:25px;"><p>Don’t want to underquote, as compared with other firms</p></div></div></li>
@@ -585,7 +916,7 @@
 
         <div class="col-md-6">
           <div class="js_kartra_component_holder">
-            <div data-component="list">
+            <div data-component="list" class="fade-in-right">
               <ul class="kartra_list">
                 <li class="kartra_list__item kartra_list__item--flex"><div class="kartra_icon kartra_icon--deep-coral-04 kartra_icon--no-shrink kartra_icon--top-adjust kartra_icon--large"><span class="kartra_icon__icon fa fa-check-square-o" style="color:#056cf9;"></span></div><div class="kartra_item_info kartra_item_info--padding-left-extra-small kartra_item_info--flex-1"><div class="kartra_item_info__headline kartra_item_info__headline--very-dark-slate-blue kartra_item_info__headline--lato-font kartra_item_info__headline--font-weight-bold kartra_item_info__headline--h5" style="margin-bottom:25px;"><p>Are in geographical location that makes you feel that you need to charge less</p></div></div></li>
                 <li class="kartra_list__item kartra_list__item--flex"><div class="kartra_icon kartra_icon--deep-coral-04 kartra_icon--no-shrink kartra_icon--top-adjust kartra_icon--large"><span class="kartra_icon__icon fa fa-check-square-o" style="color:#056cf9;"></span></div><div class="kartra_item_info kartra_item_info--padding-left-extra-small kartra_item_info--flex-1"><div class="kartra_item_info__headline kartra_item_info__headline--very-dark-slate-blue kartra_item_info__headline--lato-font kartra_item_info__headline--font-weight-bold kartra_item_info__headline--h5" style="margin-bottom:50px;"><p>Feel that selling is not your core strength</p></div></div></li>
@@ -1099,84 +1430,106 @@
 </div><!-- /.container -->
 </div><!-- /#_l84scxqra section wrapper etc. -->
 
+<!-- Duplicate video code removed - using enhanced version above -->
+
 <script>
+// Modern Enhancements JavaScript
 (function() {
-  async function addSourceAndPlay(videoEl, srcUrl) {
-    if (!videoEl) return;
-    if (videoEl.querySelector('source')) return playVideo(videoEl);
-    try {
-      const resp = await fetch(srcUrl, { credentials: 'omit' });
-      if (!resp.ok) throw new Error('Fetch failed: ' + resp.status);
-      const blob = await resp.blob();
-      const blobUrl = URL.createObjectURL(blob);
-      const src = document.createElement('source');
-      src.src = blobUrl;
-      src.type = resp.headers.get('content-type') || 'video/mp4';
-      videoEl.appendChild(src);
-      videoEl.load();
-      return playVideo(videoEl);
-    } catch (err) {
-      // fallback to direct URL
-      const src = document.createElement('source');
-      src.src = srcUrl;
-      src.type = 'video/mp4';
-      videoEl.appendChild(src);
-      videoEl.load();
-      return playVideo(videoEl);
-    }
+  // Scroll progress indicator
+  function updateScrollProgress() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPercent = (scrollTop / scrollHeight) * 100;
+    document.querySelector('.scroll-progress').style.width = scrollPercent + '%';
   }
 
-  function playVideo(videoEl) {
-    try {
-      videoEl.style.display = 'block';
-      videoEl.muted = false;
-      videoEl.controls = true;
-      const p = videoEl.play();
-      if (p && p.catch) {
-        p.catch(() => {
-          videoEl.muted = true;
-          videoEl.play().catch(() => {});
-        });
-      }
-    } catch (e) {
-      console.warn('playVideo error', e);
-    }
-  }
-
-  function wireTP(section){
-    var btn = section.querySelector('.tp-play');
-    var poster = section.querySelector('.tp-poster');
-    var vid = section.querySelector('.tp-video-el');
-    if (!btn || !poster || !vid) return;
-
-    btn.addEventListener('click', async function () {
-      try {
-        var src = vid.getAttribute('data-src');
-        if (src) await addSourceAndPlay(vid, src);
-        btn.style.display = 'none';
-        poster.style.display = 'none';
-      } catch (e) {
-        // As a last resort, try the original flow
-        try {
-          vid.style.display = 'block';
-          vid.muted = true;
-          await vid.play();
-          btn.style.display = 'none';
-          poster.style.display = 'none';
-          vid.addEventListener('click', function handleUnmuteOnce() {
-            vid.muted = false;
-            vid.volume = 1.0;
-            vid.removeEventListener('click', handleUnmuteOnce);
-          }, { once: true });
-        } catch (err) {
-          console.warn('Testimonial playback failed:', err);
-        }
+  // Scroll animations
+  function handleScrollAnimations() {
+    const elements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right');
+    const windowHeight = window.innerHeight;
+    
+    elements.forEach(element => {
+      const elementTop = element.getBoundingClientRect().top;
+      const elementVisible = 150;
+      
+      if (elementTop < windowHeight - elementVisible) {
+        element.classList.add('visible');
       }
     });
   }
 
-  // Ensure DOM is ready even if this script ever moves up again
-  function init(){ document.querySelectorAll('.tp-video').forEach(wireTP); }
+  // Navbar scroll effect
+  function handleNavbarScroll() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }
+
+  // Smooth scroll for anchor links
+  function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  }
+
+  // Loading animation
+  function initLoadingAnimation() {
+    const loadingOverlay = document.createElement('div');
+    loadingOverlay.className = 'loading-overlay';
+    loadingOverlay.innerHTML = '<div class="loading-spinner"></div>';
+    document.body.appendChild(loadingOverlay);
+
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        loadingOverlay.style.opacity = '0';
+        setTimeout(() => {
+          loadingOverlay.remove();
+        }, 500);
+      }, 500);
+    });
+  }
+
+  // Initialize everything
+  function init() {
+    // Throttle scroll events for better performance
+    let ticking = false;
+    
+    function updateOnScroll() {
+      updateScrollProgress();
+      handleScrollAnimations();
+      handleNavbarScroll();
+      ticking = false;
+    }
+    
+    function requestTick() {
+      if (!ticking) {
+        requestAnimationFrame(updateOnScroll);
+        ticking = true;
+      }
+    }
+    
+    window.addEventListener('scroll', requestTick);
+    window.addEventListener('resize', requestTick);
+    
+    // Initial calls
+    updateOnScroll();
+    initSmoothScroll();
+    initLoadingAnimation();
+  }
+
+  // Start when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
