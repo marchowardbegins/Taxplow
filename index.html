@@ -204,7 +204,7 @@
       </div>
     </div>
 
-    <!-- HERO logic: lazy-load video source on user play to make casual downloads harder -->
+    <!-- HERO logic: lazy-load video source on user play to make casual downloads harder + sticky mini-player -->
     <script>
       (function () {
         async function addSourceAndPlay(videoEl, srcUrl) {
@@ -254,6 +254,144 @@
           }
         }
 
+        // Sticky mini-player manager
+        var _mini = (function createMiniPlayer() {
+          var c = document.createElement('div');
+          c.id = 'mini-player';
+          c.style.position = 'fixed';
+          c.style.right = '18px';
+          c.style.bottom = '18px';
+          c.style.width = '280px';
+          c.style.height = '158px';
+          c.style.zIndex = '99999';
+          c.style.display = 'none';
+          c.style.boxShadow = '0 10px 30px rgba(0,0,0,.3)';
+          c.style.borderRadius = '8px';
+          c.style.overflow = 'hidden';
+          c.style.background = '#000';
+          // close button
+          var closeBtn = document.createElement('button');
+          closeBtn.setAttribute('aria-label','Close mini player');
+          closeBtn.innerHTML = '\u2715';
+          closeBtn.style.position = 'absolute';
+          closeBtn.style.left = '6px';
+          closeBtn.style.top = '6px';
+          closeBtn.style.zIndex = '100000';
+          closeBtn.style.background = 'rgba(0,0,0,0.4)';
+          closeBtn.style.color = '#fff';
+          closeBtn.style.border = 'none';
+          closeBtn.style.borderRadius = '4px';
+          closeBtn.style.width = '28px';
+          closeBtn.style.height = '28px';
+          closeBtn.style.cursor = 'pointer';
+          closeBtn.style.fontSize = '14px';
+          closeBtn.style.lineHeight = '28px';
+          closeBtn.style.padding = '0';
+          c.appendChild(closeBtn);
+          closeBtn.addEventListener('click', function () {
+            // user chooses to close: pause current and hide mini
+            if (window.__currentSticky) {
+              try { window.__currentSticky.pause(); } catch (e) {}
+            }
+            restoreVideo();
+            c.style.display = 'none';
+            // disable further automatic sticky for this video until next play
+            if (window.__currentSticky) {
+              window.__currentSticky.__disableSticky = true;
+            }
+          });
+          document.body.appendChild(c);
+          return c;
+        })();
+
+        var stickyState = {
+          current: null
+        };
+
+        function isPlaying(v) {
+          return !!(v && !v.paused && !v.ended && v.currentTime > 0 && v.readyState > 2);
+        }
+
+        function showMini(v) {
+          if (!v) return;
+          if (stickyState.current === v) return;
+          // create placeholder to keep layout
+          var placeholder = document.createElement('div');
+          placeholder.className = 'video-placeholder';
+          placeholder.style.width = v.offsetWidth ? v.offsetWidth + 'px' : '100%';
+          placeholder.style.height = v.offsetHeight ? v.offsetHeight + 'px' : 'auto';
+          v.__placeholder = placeholder;
+          var parent = v.parentNode;
+          if (parent && parent.replaceChild) parent.replaceChild(placeholder, v);
+          // move video into mini
+          _mini.appendChild(v);
+          v.style.width = '100%';
+          v.style.height = '100%';
+          v.classList.add('mini-mode');
+          _mini.style.display = 'block';
+          stickyState.current = v;
+          window.__currentSticky = v;
+        }
+
+        function restoreVideo() {
+          var v = stickyState.current;
+          if (!v) return;
+          var ph = v.__placeholder;
+          if (ph && ph.parentNode) {
+            ph.parentNode.replaceChild(v, ph);
+          } else {
+            // best-effort append back to original container if placeholder missing
+            var possible = document.querySelector('#hero') || document.body;
+            possible.appendChild(v);
+          }
+          v.style.width = '';
+          v.style.height = '';
+          v.classList.remove('mini-mode');
+          _mini.style.display = 'none';
+          stickyState.current = null;
+          window.__currentSticky = null;
+        }
+
+        var rafScheduled = false;
+        function scheduleCheck() {
+          if (rafScheduled) return;
+          rafScheduled = true;
+          requestAnimationFrame(function () {
+            rafScheduled = false;
+            checkStickyForAll();
+          });
+        }
+
+        function checkStickyForAll() {
+          // If there is a current sticky but it's paused, restore
+          if (stickyState.current && !isPlaying(stickyState.current)) {
+            restoreVideo();
+            return;
+          }
+          // prefer hero if playing
+          var hero = document.getElementById('heroVideo');
+          if (hero && isPlaying(hero) && !hero.__disableSticky) {
+            var r = hero.getBoundingClientRect();
+            if (r.bottom < 0 || r.top > window.innerHeight) showMini(hero);
+            else if (stickyState.current === hero) restoreVideo();
+            return;
+          }
+          // otherwise look for any testimonial playing
+          var vids = Array.from(document.querySelectorAll('.tp-video-el'));
+          for (var i = 0; i < vids.length; i++) {
+            var v = vids[i];
+            if (isPlaying(v) && !v.__disableSticky) {
+              var rr = v.getBoundingClientRect();
+              if (rr.bottom < 0 || rr.top > window.innerHeight) { showMini(v); return; }
+              if (stickyState.current === v) restoreVideo();
+            }
+          }
+          // nothing playing that needs sticky
+        }
+
+        document.addEventListener('scroll', scheduleCheck, { passive: true });
+        window.addEventListener('resize', scheduleCheck);
+
         document.addEventListener('DOMContentLoaded', function () {
           // Hero
           var btn = document.getElementById('heroPlayBtn');
@@ -265,6 +403,9 @@
               if (src) await addSourceAndPlay(vid, src);
               btn.style.display = 'none';
               poster.style.display = 'none';
+              // schedule sticky checks when hero plays
+              vid.addEventListener('play', scheduleCheck);
+              vid.addEventListener('pause', scheduleCheck);
             });
           }
 
@@ -282,7 +423,15 @@
               var posterImg = container.querySelector('.tp-poster');
               if (posterImg) posterImg.style.display = 'none';
               playBtn.style.display = 'none';
+              // schedule sticky behavior for this video
+              videoEl.addEventListener('play', scheduleCheck);
+              videoEl.addEventListener('pause', scheduleCheck);
             });
+          });
+          // Also hook up play/pause on any pre-existing videos (in case source was added externally)
+          document.querySelectorAll('#heroVideo, .tp-video-el').forEach(function(v) {
+            v.addEventListener('play', scheduleCheck);
+            v.addEventListener('pause', scheduleCheck);
           });
         });
       })();
