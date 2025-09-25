@@ -189,8 +189,10 @@
          muted
          preload="metadata"
          poster="assets/marc hero taxplow.png"
+         data-src="https://github.com/marchowardbegins/Taxplow/releases/download/v1/1329_1729000884211Taxplow_Hero_Video.mp4"
+         controlsList="nodownload" disablePictureInPicture oncontextmenu="return false"
          style="width:100%;height:auto;display:none;">
-    <source src="https://github.com/marchowardbegins/Taxplow/releases/download/v1/1329_1729000884211Taxplow_Hero_Video.mp4" type="video/mp4">
+    <!-- source will be added on-play to avoid showing direct URL in the DOM -->
     Your browser does not support the video tag.
   </video>
 </section>
@@ -202,49 +204,88 @@
       </div>
     </div>
 
-    <!-- HERO logic -->
+    <!-- HERO logic: lazy-load video source on user play to make casual downloads harder -->
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        var btn = document.getElementById('heroPlayBtn');
-        var poster = document.getElementById('heroPoster');
-        var vid = document.getElementById('heroVideo');
+      (function () {
+        async function addSourceAndPlay(videoEl, srcUrl) {
+          if (!videoEl) return;
+          // if source already present, nothing to do
+          if (videoEl.querySelector('source')) return playVideo(videoEl);
 
-        if (!btn || !poster || !vid) return;
-
-        btn.addEventListener('click', async function () {
+          // try fetching as blob first (may be blocked by CORS); fallback to assigning URL
           try {
-            vid.style.display = 'block';
-            // try unmuted play
-            vid.muted = false;
-            vid.controls = true; // show controls after click (optional)
-            vid.currentTime = 0;
+            const resp = await fetch(srcUrl, { credentials: 'omit' });
+            if (!resp.ok) throw new Error('Fetch failed: ' + resp.status);
+            const blob = await resp.blob();
+            const blobUrl = URL.createObjectURL(blob);
+            const src = document.createElement('source');
+            src.src = blobUrl;
+            src.type = resp.headers.get('content-type') || 'video/mp4';
+            videoEl.appendChild(src);
+            videoEl.load();
+            return playVideo(videoEl);
+          } catch (err) {
+            // fallback: set direct URL as source (will appear in network tab)
+            const src = document.createElement('source');
+            src.src = srcUrl;
+            src.type = 'video/mp4';
+            videoEl.appendChild(src);
+            videoEl.load();
+            return playVideo(videoEl);
+          }
+        }
 
-            await vid.play();
-
-            // hide overlay/poster when playing
-            btn.style.display = 'none';
-            poster.style.display = 'none';
+        function playVideo(videoEl) {
+          try {
+            videoEl.style.display = 'block';
+            // allow attempt to play unmuted first
+            videoEl.muted = false;
+            videoEl.controls = true;
+            const p = videoEl.play();
+            if (p && p.catch) {
+              p.catch(() => {
+                // fallback to muted play for browsers that block autoplay with sound
+                videoEl.muted = true;
+                videoEl.play().catch(() => {});
+              });
+            }
           } catch (e) {
-            // Fallback: some browsers refuse autoplay with sound even on user gesture
-            try {
-              vid.muted = true;
-              vid.style.display = 'block';
-              await vid.play();
+            console.warn('playVideo error', e);
+          }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+          // Hero
+          var btn = document.getElementById('heroPlayBtn');
+          var poster = document.getElementById('heroPoster');
+          var vid = document.getElementById('heroVideo');
+          if (btn && poster && vid) {
+            btn.addEventListener('click', async function () {
+              var src = vid.getAttribute('data-src');
+              if (src) await addSourceAndPlay(vid, src);
               btn.style.display = 'none';
               poster.style.display = 'none';
-
-              // First tap on video will unmute
-              vid.addEventListener('click', function handleUnmuteOnce() {
-                vid.muted = false;
-                vid.volume = 1.0;
-                vid.removeEventListener('click', handleUnmuteOnce);
-              }, { once: true });
-            } catch (err) {
-              console.warn('Playback failed:', err);
-            }
+            });
           }
+
+          // Testimonials: buttons with class .tp-play and video element .tp-video-el
+          document.querySelectorAll('.tp-play').forEach(function (playBtn) {
+            playBtn.addEventListener('click', async function (ev) {
+              // find the nearest container and video element
+              var container = playBtn.closest('.tp-video');
+              if (!container) container = playBtn.parentElement;
+              var videoEl = container ? container.querySelector('.tp-video-el') : null;
+              if (!videoEl) return;
+              var src = videoEl.getAttribute('data-src');
+              if (src) await addSourceAndPlay(videoEl, src);
+              // hide play button and poster if present
+              var posterImg = container.querySelector('.tp-poster');
+              if (posterImg) posterImg.style.display = 'none';
+              playBtn.style.display = 'none';
+            });
+          });
         });
-      });
+      })();
     </script>
     <!-- /HERO end -->
 
@@ -327,8 +368,10 @@
          muted
          preload="metadata"
          poster="assets/crider_snapshot.png"
+         data-src="https://github.com/marchowardbegins/Taxplow/releases/download/v1/robert_crider_-_sadowski_testimonial-_edited.mp4"
+         controlsList="nodownload" disablePictureInPicture oncontextmenu="return false"
          style="width:100%;height:auto;display:none;">
-    <source src="https://github.com/marchowardbegins/Taxplow/releases/download/v1/robert_crider_-_sadowski_testimonial-_edited.mp4" type="video/mp4">
+    <!-- source will be added on-play -->
     Your browser does not support the video tag.
   </video>
 </section>
@@ -404,8 +447,10 @@
          muted
          preload="metadata"
          poster="assets/cohesion-snapshot.png"
+         data-src="https://github.com/marchowardbegins/Taxplow/releases/download/v1/899_1707285149159prewitt_testimonial-v2.mp4"
+         controlsList="nodownload" disablePictureInPicture oncontextmenu="return false"
          style="width:100%;height:auto;display:none;">
-    <source src="https://github.com/marchowardbegins/Taxplow/releases/download/v1/899_1707285149159prewitt_testimonial-v2.mp4" type="video/mp4">
+    <!-- source will be added on-play -->
     Your browser does not support the video tag.
   </video>
 </section>
@@ -475,8 +520,10 @@
          muted
          preload="metadata"
          poster="assets/deese-snapshot.png"
+         data-src="https://github.com/marchowardbegins/Taxplow/releases/download/v1/tyler_deese_taxplow_testimonial_video_-_FINAL.mp4"
+         controlsList="nodownload" disablePictureInPicture oncontextmenu="return false"
          style="width:100%;height:auto;display:none;">
-    <source src="https://github.com/marchowardbegins/Taxplow/releases/download/v1/tyler_deese_taxplow_testimonial_video_-_FINAL.mp4" type="video/mp4">
+    <!-- source will be added on-play -->
     Your browser does not support the video tag.
   </video>
 </section>
@@ -1054,6 +1101,48 @@
 
 <script>
 (function() {
+  async function addSourceAndPlay(videoEl, srcUrl) {
+    if (!videoEl) return;
+    if (videoEl.querySelector('source')) return playVideo(videoEl);
+    try {
+      const resp = await fetch(srcUrl, { credentials: 'omit' });
+      if (!resp.ok) throw new Error('Fetch failed: ' + resp.status);
+      const blob = await resp.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const src = document.createElement('source');
+      src.src = blobUrl;
+      src.type = resp.headers.get('content-type') || 'video/mp4';
+      videoEl.appendChild(src);
+      videoEl.load();
+      return playVideo(videoEl);
+    } catch (err) {
+      // fallback to direct URL
+      const src = document.createElement('source');
+      src.src = srcUrl;
+      src.type = 'video/mp4';
+      videoEl.appendChild(src);
+      videoEl.load();
+      return playVideo(videoEl);
+    }
+  }
+
+  function playVideo(videoEl) {
+    try {
+      videoEl.style.display = 'block';
+      videoEl.muted = false;
+      videoEl.controls = true;
+      const p = videoEl.play();
+      if (p && p.catch) {
+        p.catch(() => {
+          videoEl.muted = true;
+          videoEl.play().catch(() => {});
+        });
+      }
+    } catch (e) {
+      console.warn('playVideo error', e);
+    }
+  }
+
   function wireTP(section){
     var btn = section.querySelector('.tp-play');
     var poster = section.querySelector('.tp-poster');
@@ -1062,18 +1151,15 @@
 
     btn.addEventListener('click', async function () {
       try {
-        vid.style.display = 'block';
-        vid.muted = false;       // try to start with sound on
-        vid.controls = true;     // show controls after click
-        vid.currentTime = 0;
-        await vid.play();
+        var src = vid.getAttribute('data-src');
+        if (src) await addSourceAndPlay(vid, src);
         btn.style.display = 'none';
         poster.style.display = 'none';
       } catch (e) {
-        // Fallback: first play muted if browser blocks audio
+        // As a last resort, try the original flow
         try {
-          vid.muted = true;
           vid.style.display = 'block';
+          vid.muted = true;
           await vid.play();
           btn.style.display = 'none';
           poster.style.display = 'none';
