@@ -1,0 +1,37 @@
+name: Create release for tag
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag name to create a release for'
+        required: true
+        default: 'v1.1.0'
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Determine tag to release
+        id: tag_step
+        run: |
+          if [ "${GITHUB_EVENT_NAME}" = "workflow_dispatch" ]; then
+            echo "tag=${{ github.event.inputs.tag }}" >> $GITHUB_OUTPUT
+          else
+            echo "tag=v1.1.0" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create GitHub release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ steps.tag_step.outputs.tag }}
+          release_name: ${{ steps.tag_step.outputs.tag }}
+          body: |
+            Release ${{ steps.tag_step.outputs.tag }} — automatic release created from workflow.
+
+            - Static marketing site snapshot
+            - Tag pushed: ${{ steps.tag_step.outputs.tag }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
