@@ -1,5 +1,9 @@
 name: Create release for tag
 
+# Explicitly grant the token permissions required to create releases
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ main ]
