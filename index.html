@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+  <!-- Kartra-exported CSS bundles -->
   <link rel="stylesheet" type="text/css" href="assets/css-0ee60140-c199-4a95-b984-2c17288cf9d9_mhtml.blink"/>
   <link rel="stylesheet" type="text/css" href="assets/css-c95db45a-e176-496c-81f7-552f18008ef3_mhtml.blink"/>
   <link rel="stylesheet" type="text/css" href="assets/css-a4ed0d3e-c4b9-45af-b6db-bc44bf08296a_mhtml.blink"/>
@@ -9,29 +11,19 @@
   <link rel="stylesheet" type="text/css" href="assets/css-26fe6699-63a6-4e34-a307-1c762660eaf0_mhtml.blink"/>
   <link rel="stylesheet" type="text/css" href="assets/css-060cc430-7d25-4566-bb5c-3d6452a4ac83_mhtml.blink"/>
 
-<style id="full-bleed-fix">
-  /* kill Bootstrap’s side padding on the outer wrapper */
-  .page.container-fluid { padding-left: 0 !important; padding-right: 0 !important; }
+  <!-- Layout tweaks -->
+  <style id="full-bleed-fix">
+    /* kill Bootstrap’s side padding on the outer wrapper */
+    .page.container-fluid { padding-left: 0 !important; padding-right: 0 !important; }
 
-  /* make sure section backgrounds can actually reach the edges */
-  .content { position: relative; }
-  .content > .background_changer {
-    position: absolute; inset: 0; background-size: cover; background-position: center;
-  }
-  .content > .background_changer_overlay { position:absolute; inset:0; }
-</style>
-<style>
-  /* Ensure Kartra icons use FA’s font */
-  .kartra_icon__icon.fa,
-  .accordion-indicator i.fa,
-  .kartra_icon .fa {
-    font-family: "FontAwesome" !important;
-    font-style: normal;
-    font-weight: normal;
-  }
-</style>
+    /* make sure section backgrounds can actually reach the edges */
+    .content { position: relative; }
+    .content > .background_changer {
+      position: absolute; inset: 0; background-size: cover; background-position: center;
+    }
+    .content > .background_changer_overlay { position:absolute; inset:0; }
+  </style>
 
-  
   <title>Taxplow - Charge for outcomes not hours.</title>
   <meta name="description" content="Command higher fees for your accounting and tax practice using AI."/>
   <meta name="keywords" content="Marc Howard Taxplow"/>
@@ -43,7 +35,7 @@
   <meta property="og:description" content="Command higher fees for your accounting and tax practice using AI."/>
   <meta property="og:image" content="assets/74293050050what_is_taxplow.jpg"/>
 
-  <!-- Font icons preconnect -->
+  <!-- Preconnect/dns-prefetch for legacy assets -->
   <link rel="preconnect" href="https://app.kartra.com/" crossorigin/>
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin/>
   <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin/>
@@ -53,17 +45,33 @@
   <link rel="dns-prefetch" href="https://fonts.googleapis.com/"/>
   <link rel="dns-prefetch" href="https://d2uolguxr56s4e.cloudfront.net/"/>
 
+  <!-- Your site CSS (keep their order) -->
   <link rel="stylesheet" as="style" type="text/css" href="assets/css.css"/>
   <link rel="stylesheet" href="assets/new_bootstrap.css"/>
- <link rel="stylesheet" as="style" href="assets/kartra_components.css"/>
-<link rel="stylesheet" type="text/css" href="assets/styles.css"/>
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-      integrity="sha512-SfZ6P5QGL7NQ0G6qg2bZ8QwQ/dq2Bju9xCq7G9J1h7iVUgO2NQ9PtxT1rZxvDYc1xCdsr6J0aGQ2Y2Z5x6LOVw=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" as="style" href="assets/kartra_components.css"/>
+  <link rel="stylesheet" type="text/css" href="assets/styles.css"/>
 
+  <!-- Font Awesome 4.7 — place LAST so its rules win; no SRI to avoid mismatch blocking -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Make sure FA’s font is used even if other CSS overwrites .fa -->
+  <style>
+    .fa, .fa:before,
+    .kartra_icon__icon.fa,
+    .accordion-indicator i.fa,
+    .kartra_icon .fa {
+      font-family: "FontAwesome" !important;
+      font-style: normal;
+      font-weight: normal;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
 </head>
-<body>
+
   <!-- Kartra tracker (kept) -->
   <div class="js_kartra_trackable_object" data-kt-owner="AgqD2Xep" data-kt-type="kartra_page_tracking" data-kt-value="nmiautAz8Ja4" style="height:0px;width:0px;opacity:0;position:fixed"></div>
 
