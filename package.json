@@ -1,0 +1,19 @@
+{
+  "name": "taxplow",
+  "version": "1.0.0",
+  "description": "Taxplow application",
+  "private": true,
+  "scripts": {
+    "preview": "node -r dotenv/config scripts/deploy.mjs draft",
+    "publish": "node -r dotenv/config scripts/deploy.mjs prod",
+    "preview:app": "npm run preview",
+    "publish:app": "npm run publish"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0",
+    "dotenv": "^17.2.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
